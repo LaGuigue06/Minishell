@@ -3,26 +3,36 @@ CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror
 INCLUDES = -I./includes
 
-SRCS =	srcs/minishell.c\
-		srcs/parsing.c\
-		srcs/execute.c\
-		srcs/utils/ft_bzero.c\
-		srcs/utils/ft_calloc.c\
-		srcs/utils/ft_split.c\
-		srcs/utils/ft_free.c\
-		srcs/utils/lst_new.c\
-		srcs/utils/lst_add_back.c\
-		srcs/utils/lst_add_front.c\
-		srcs/utils/find_path.c\
-		srcs/utils/get_path.c\
-		srcs/utils/ft_strcmp.c\
-		srcs/utils/ft_strlen.c\
-		srcs/utils/ft_strdup.c\
-		srcs/utils/ft_strjoin.c\
-		srcs/utils/lst_size.c\
-		srcs/utils/get_binary.c\
-		srcs/get_next_line/get_next_line_utils.c\
-		srcs/get_next_line/get_next_line.c\
+UTILS_SRCS= $(addprefix srcs/utils/, \
+ft_bzero.c \
+ft_calloc.c \
+ft_split.c \
+ft_free.c \
+lst_new.c \
+lst_add_back.c \
+lst_add_front.c \
+find_path.c \
+get_path.c \
+ft_strcmp.c \
+ft_strlen.c \
+ft_strdup.c \
+ft_strjoin.c \
+lst_size.c \
+get_binary.c)
+
+GNL_UTILS= $(addprefix srcs/get_next_line/, \
+get_next_line_utils.c \
+get_next_line.c)
+
+EXECUTION_SRCS= $(addprefix srcs/execution/, \
+execute.c)
+
+PARSING_SRCS= $(addprefix srcs/parsing/, \
+parsing.c)
+
+SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(GNL_UTILS) \
+$(addprefix srcs/, \
+minishell.c)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -31,6 +41,9 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
+
+leaks:
+	valgrind ./$(NAME)
 
 all: $(NAME)
 
@@ -42,4 +55,4 @@ fclean: clean
 
 re: clean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re leaks
