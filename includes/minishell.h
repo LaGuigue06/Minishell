@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:59:20 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/04 13:16:50 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:45:20 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 # include <stdint.h>
 # include "../srcs/get_next_line/get_next_line.h"
 # include "suite.h"
+
+# define GREEN "\033[0;32m"
+# define RED "\033[0;31m"
+# define WHITE "\033[0;37m"
+#define RESET "\001\e[0m\002"
 
 /*					Define different Types		*/
 

@@ -2,6 +2,8 @@
     "files.associations": {
         "get_next_line.h": "c",
         "minishell.h": "c",
-        "suite.h": "c"
+        "suite.h": "c",
+        "signal.h": "c",
+        "resource.h": "c"
     }
 }
