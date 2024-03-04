@@ -21,5 +21,3 @@ typedef struct s_command
     int output_fd; // fd de sortie pour gérer pipe / redirect
 }   t_command;
 ```
-
-Maybe ajouter un field `options` pour le "echo -n" par exemple

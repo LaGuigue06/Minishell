@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:43:14 by laguigue          #+#    #+#             */
-/*   Updated: 2024/02/29 20:29:31 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:10:30 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	get_type(char *str)
+/*static int	get_type(char *str)
 {
 	if (ft_strcmp(str, "|"))
 		return (PIPE);
@@ -49,3 +49,4 @@ t_list	*parse(char *line)
 	}
 	return (cmd_list);
 }
+*/

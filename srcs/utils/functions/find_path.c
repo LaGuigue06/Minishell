@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 17:47:45 by laguigue          #+#    #+#             */
-/*   Updated: 2024/02/29 20:42:17 by laguigue         ###   ########.fr       */
+/*   Created: 2024/02/29 18:10:12 by laguigue          #+#    #+#             */
+/*   Updated: 2024/03/04 12:11:38 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-void	ft_free_tab(char **map)
+int	find_path(const char *str, const char *to_find)
 {
 	size_t	index;
 
 	index = 0;
-	while (map[index])
-		free(map[index++]);
-	if (map)
-		free(map);
-}
-
-void	ft_free_list(t_list *lst)
-{
-	t_list	*temp;
-
-	while (lst)
+	while (str[index] && to_find[index] && str[index] == to_find[index])
 	{
-		temp = lst;
-		lst = lst->next;
-		free(temp->data);
-		free(temp);
+		++index;
+		if (to_find[index] == '\0')
+			return (1);
 	}
+	return (0);
 }
+

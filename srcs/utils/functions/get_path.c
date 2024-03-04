@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_size.c                                         :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 20:12:45 by laguigue          #+#    #+#             */
-/*   Updated: 2024/02/29 20:14:15 by laguigue         ###   ########.fr       */
+/*   Created: 2024/02/29 18:26:42 by laguigue          #+#    #+#             */
+/*   Updated: 2024/03/04 12:11:58 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-size_t	lst_size(t_list *lst)
+char	**get_path(char **env)
 {
-	t_list	*head;
-	size_t	size;
+	size_t	index;
 
-	size = 0;
-	head = lst;
-	while (head)
+	index = 0;
+	while (env[index])
 	{
-		head = head->next;
-		++size;
+		if (find_path(env[index], "PATH="))
+			return (ft_split(env[index] + 5, ":"));
+		++index;
 	}
-	return (size);
+	return (NULL);
 }

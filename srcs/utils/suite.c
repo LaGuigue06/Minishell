@@ -1,24 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   suite.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 17:03:05 by laguigue          #+#    #+#             */
-/*   Updated: 2024/02/29 17:05:17 by laguigue         ###   ########.fr       */
+/*   Created: 2024/03/04 10:57:41 by vicalvez          #+#    #+#             */
+/*   Updated: 2024/03/04 13:01:34 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
-
-void	ft_bzero(void *data, size_t	size)
-{
-	unsigned char	*temp;
-	size_t			i;
-
-	temp = data;
-	i = 0;
-	while (i < size)
-		temp[i++] = 0;
-}
+// create suite from string init data

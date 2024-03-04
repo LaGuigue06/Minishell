@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 19:08:19 by laguigue          #+#    #+#             */
-/*   Updated: 2024/02/29 19:15:37 by laguigue         ###   ########.fr       */
+/*   Created: 2024/02/29 17:05:20 by laguigue          #+#    #+#             */
+/*   Updated: 2024/03/04 12:11:39 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-char	*ft_strdup(char *str)
+void	*ft_calloc(size_t elem_size, size_t elem_num)
 {
-	char	*result;
-	size_t	index;
+	void	*result;
 
-	result = ft_calloc(sizeof(char), ft_strlen(str) + 1);
+	if (elem_num * elem_size == 0)
+		return (malloc(0));
+	result = malloc(elem_size * elem_num);
 	if (!result)
 		return (NULL);
-	index = 0;
-	while (str[index])
-	{
-		result[index] = str[index];
-		++index;
-	}
-	result[index] = '\0';
+	ft_bzero(result, elem_size * elem_num);
 	return (result);
 }

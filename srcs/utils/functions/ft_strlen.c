@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_path.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 18:10:12 by laguigue          #+#    #+#             */
-/*   Updated: 2024/02/29 18:20:46 by laguigue         ###   ########.fr       */
+/*   Created: 2024/02/29 19:08:54 by laguigue          #+#    #+#             */
+/*   Updated: 2024/03/04 12:11:53 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	find_path(const char *str, const char *to_find)
+size_t	ft_strlen(const char *str)
 {
 	size_t	index;
 
 	index = 0;
-	while (str[index] && to_find[index] && str[index] == to_find[index])
-	{
+	while (str[index])
 		++index;
-		if (to_find[index] == '\0')
-			return (1);
-	}
-	return (0);
+	return (index);
 }
-

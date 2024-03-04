@@ -1,9 +1,14 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror -lreadline
 INCLUDES = -I./includes
 
 UTILS_SRCS= $(addprefix srcs/utils/, \
+suite.c \
+command.c \
+arg.c)
+
+UTILS_FUNCS= $(addprefix srcs/utils/functions/, \
 ft_bzero.c \
 ft_calloc.c \
 ft_split.c \
@@ -30,17 +35,17 @@ execute.c)
 PARSING_SRCS= $(addprefix srcs/parsing/, \
 parsing.c)
 
-SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(GNL_UTILS) \
+SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(UTILS_FUNCS) $(GNL_UTILS) \
 $(addprefix srcs/, \
 minishell.c)
 
 OBJS = $(SRCS:.c=.o)
 
-.c.o: $(SRCS)
-	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME) $(CFLAGS)
 
 leaks:
 	valgrind ./$(NAME)

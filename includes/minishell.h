@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:59:20 by laguigue          #+#    #+#             */
-/*   Updated: 2024/02/29 20:33:33 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:16:50 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # include <readline/history.h>
 # include <stdint.h>
 # include "../srcs/get_next_line/get_next_line.h"
+# include "suite.h"
 
 /*					Define different Types		*/
 

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_path.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 18:26:42 by laguigue          #+#    #+#             */
-/*   Updated: 2024/02/29 20:33:14 by laguigue         ###   ########.fr       */
+/*   Created: 2024/02/29 19:08:19 by laguigue          #+#    #+#             */
+/*   Updated: 2024/03/04 12:11:49 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-char	**get_path(char **env)
+char	*ft_strdup(char *str)
 {
+	char	*result;
 	size_t	index;
 
+	result = ft_calloc(sizeof(char), ft_strlen(str) + 1);
+	if (!result)
+		return (NULL);
 	index = 0;
-	while (env[index])
+	while (str[index])
 	{
-		if (find_path(env[index], "PATH="))
-			return (ft_split(env[index] + 5, ":"));
+		result[index] = str[index];
 		++index;
 	}
-	return (NULL);
+	result[index] = '\0';
+	return (result);
 }
