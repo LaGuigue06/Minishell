@@ -29,11 +29,14 @@ t_suite *parse_suite(t_suite **initial_suite, char *str)
         Ici il faut trouver un moyen de split les commandes mais de garder les pipes et redirections pour les passer
         dans la struct t_command de chaque commande
         
-        prog < file
-        prog << del
-        prog > file
-        prog >> file
-        prog | prog2
+        prog < file: input def, output = 0
+        prog << del: input def seulement si rencontre le char del sinon rien ne s'execute, output = 0
+        prog > file: input = 0 ou pipe, output = file en overwrite
+        prog >> file: input = 0 ou pipe, output = file en append
+        prog | prog2: input = prog, output = 0
+
+        < ou << ont la priorité sur |
+        ex: echo "hey" | wc -l < file, le fd de file sera envoyé dans wc -l et non celui du echo
 
     */
    return (suite);
