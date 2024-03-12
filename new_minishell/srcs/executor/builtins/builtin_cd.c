@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 11:19:24 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/12 14:43:39 by vicalvez         ###   ########.fr       */
+/*   Created: 2024/03/12 14:41:34 by vicalvez          #+#    #+#             */
+/*   Updated: 2024/03/12 15:11:21 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int execute_echo(char **args, int output_fd)
+int execute_cd(t_data *data, char **args)
 {
-    int i;
-
-    i = 0;
-    if (!args[i])
+    if (!args[1])
     {
-        ft_putchar_fd('\n', output_fd);
+        chdir("~");
+        data->old_pwd = data->pwd;
+        data->pwd = getenv("HOME");
         return (0);
     }
-    i = 1;
-    while (args[i])
+    if (chdir(args[1]) == -1)
     {
-        if (ft_strcmp(args[1], "-n") == 0 && i == output_fd)
-            i++;
-        if (!args[i])
-            break ;
-        ft_putstr_fd(args[i], output_fd);
-        if (args[i + 1])
-            ft_putchar_fd(' ', output_fd);
-        i++;
+        ft_putstr_fd(strerror(errno), 1);
+        ft_putchar_fd('\n', 1);
+        return (1);
     }
-    if (args[1] && ft_strcmp(args[1], "-n") > 0)
-        ft_putchar_fd('\n', output_fd);
+    data->old_pwd = data->pwd;
+    data->pwd = getcwd(NULL, 0);
     return (0);
 }
