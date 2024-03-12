@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 11:20:16 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/12 14:39:55 by vicalvez         ###   ########.fr       */
+/*   Created: 2024/03/12 14:41:34 by vicalvez          #+#    #+#             */
+/*   Updated: 2024/03/12 15:11:21 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int execute(t_parser *parser, t_data *data)
+int execute_cd(t_data *data, char **args)
 {
-    if (parser->builtin)
-        return (execute_builtin(parser, data));
-    else
-        ft_putstr_fd("todo: Exec cmd\n", 0);
+    if (!args[1])
+    {
+        chdir("~");
+        data->old_pwd = data->pwd;
+        data->pwd = getenv("HOME");
+        return (0);
+    }
+    if (chdir(args[1]) == -1)
+    {
+        ft_putstr_fd(strerror(errno), 1);
+        ft_putchar_fd('\n', 1);
+        return (1);
+    }
+    data->old_pwd = data->pwd;
+    data->pwd = getcwd(NULL, 0);
     return (0);
 }

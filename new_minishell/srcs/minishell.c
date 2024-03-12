@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 12:39:51 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:40:55 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,11 @@ void	minishell(t_data *data)
 	parser(data);
 	//print_data(data);
 	//expandor;
-	execute(data->parser, data);
+	if (execute(data->parser, data) == -1) // exit command
+	{
+		free_data(data);
+		return ;
+	}
 	reset_data(data);
 }
 

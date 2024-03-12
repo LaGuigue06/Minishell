@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 13:02:41 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:59:24 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,9 @@ t_parser	*parser_new(t_lexer *lexer, t_parser *prev);
 int		execute(t_parser *parser, t_data *data);
 int		execute_builtin(t_parser *parser, t_data *data);
 int		execute_env(char **env, int output_fd);
-int		execute_echo(char **args);
-int 	execute_pwd(t_data *data);
+int		execute_echo(char **args, int output_fd);
+int 	execute_pwd(t_data *data, int output_fd);
+int 	execute_cd(t_data *data, char **args);
 
 /*				Main function		*/
 
