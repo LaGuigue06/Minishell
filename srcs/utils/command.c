@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:02:40 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/04 13:16:47 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:24:58 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_command   *init_command(char *cmd, t_command **previous)
     command = malloc(sizeof(t_command));
     add_command(previous, command);
     args = ft_split(cmd, " ");
-    command->name = args[0];
+    //command->name = args[0];
     command->next = NULL;
     command->input_fd = 0;
     command->output_fd = 0;
@@ -59,7 +59,7 @@ void    print_command(t_command *command) // used for debug
     t_arg *arg;
     
     printf("==== Command ====\n");
-    printf("Command name/file: %s\n input_fd %d\n output_fd %d\n", command->name, command->input_fd, command->output_fd);
+    printf("input_fd %d\n output_fd %d\n", /*command->name*/ command->input_fd, command->output_fd);
     arg = command->arg;
     printf("==== Args ====\n");
     while (arg && arg->arg)

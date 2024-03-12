@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:59:20 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/04 14:45:20 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:41:41 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@
 
 /*					Structures					*/
 
-typedef struct s_data
-{
-	char	**env;
-	char	**path;
-}	t_data;
-
 typedef struct s_list
 {
 	struct s_list	*next;
@@ -91,6 +85,7 @@ size_t	lst_size(t_list *lst);
 
 /*					Main functions				*/
 
+t_data	*init_value(char **env);
 t_list	*parse(char *line);
 void	ft_execute(t_list *cmd, char **env);
 
