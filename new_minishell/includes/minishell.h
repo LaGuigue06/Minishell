@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 14:59:24 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:48:10 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,14 @@ void	free_all(t_data *data);
 void	ft_bzero(void *result, size_t size);
 void	*ft_calloc(size_t num, size_t size);
 void	error(char *err_message, bool is_errno, t_data *data);
+void	free_lexer(t_lexer **lexer);
+void	free_parser(t_parser **parser);
 int		error_pre_loop(char *err_message, t_data *data);
 int		ft_strcmp(char *s1, char *s2);
 bool	ft_substr(const char *str, const char *to_find);
 size_t	ft_strlen(const char *str);
 char	*ft_strtrim_cmd(char *cmd);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *str);
 char	**ft_split(const char *str, const char *charset);
 char	**ft_arrdup(char **arr);
@@ -135,21 +138,29 @@ t_lexer		*lexer_new(char *word, t_lexer *prev);
 /*				Parser Funcion		*/
 
 void		parser(t_data *data);
-int			parser_add(t_parser **parser, t_lexer *lexer);
-char		*get_cmd(t_lexer *lexer);
+int			parser_add(t_parser **parser, t_lexer *lexer, t_data *data);
+int			get_input_fd(t_data *data, t_lexer *lexer);
+int			get_output_fd(t_data *data, t_lexer *lexer);
+char		*get_cmd(t_lexer *lexer, t_data *data);
 char		*get_delimiter(t_lexer *lexer);
 char		**get_args(t_lexer *lexer, char *cmd);
-t_parser	*parser_new(t_lexer *lexer, t_parser *prev);
+t_parser	*parser_new(t_data *data, t_lexer *lexer, t_parser *prev);
 
 
 /*				Execute functions	*/
 
-int		execute(t_parser *parser, t_data *data);
+int		execute(t_data *data);
 int		execute_builtin(t_parser *parser, t_data *data);
 int		execute_env(char **env, int output_fd);
+<<<<<<< HEAD
+int		execute_echo(char **args);
+int 	execute_pwd(t_data *data);
+char	*get_binary(char **path, char *cmd);
+=======
 int		execute_echo(char **args, int output_fd);
 int 	execute_pwd(t_data *data, int output_fd);
 int 	execute_cd(t_data *data, char **args);
+>>>>>>> refs/remotes/origin/main
 
 /*				Main function		*/
 
