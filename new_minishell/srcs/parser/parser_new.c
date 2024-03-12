@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   parser_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 19:42:53 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/11 18:43:43 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:55:35 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char	*get_builtin(char *word)
+static int	is_builtin(char *word)
 {
 	if (!ft_strcmp(word, "\"echo\"") || !ft_strcmp(word, "'echo'") || !ft_strcmp(word, "echo"))
-		return (ft_strdup("echo"));
+		return (1);
 	if (!ft_strcmp(word, "\"cd\"") || !ft_strcmp(word, "'cd'") || !ft_strcmp(word, "cd"))
-		return (ft_strdup("cd"));
+		return (1);
 	if (!ft_strcmp(word, "\"pwd\"") || !ft_strcmp(word, "'pwd'") || !ft_strcmp(word, "pwd"))
-		return (ft_strdup("pwd"));
+		return (1);
 	if (!ft_strcmp(word, "\"export\"") || !ft_strcmp(word, "'export'") || !ft_strcmp(word, "export"))
-		return (ft_strdup("export"));
+		return (1);
 	if (!ft_strcmp(word, "\"unset\"") || !ft_strcmp(word, "'unset'") || !ft_strcmp(word, "unset"))
-		return (ft_strdup("unset"));
+		return (1);
 	if (!ft_strcmp(word, "\"env\"") || !ft_strcmp(word, "'env'") || !ft_strcmp(word, "env"))
-		return (ft_strdup("env"));
+		return (1);
 	if (!ft_strcmp(word, "\"exit\"") || !ft_strcmp(word, "'exit'") || !ft_strcmp(word, "exit"))
-		return (ft_strdup("exit"));
-	return (NULL);
+		return (1);
+	return (0);
 }
 
 t_parser	*parser_new(t_lexer *lexer, t_parser *prev)
@@ -40,7 +40,12 @@ t_parser	*parser_new(t_lexer *lexer, t_parser *prev)
 		return (NULL);
 	new->cmd = get_cmd(lexer);
 	new->args = get_args(lexer, new->cmd);
-	if (new->args)
+	new->delimiter = get_delimiter(lexer);
+	new->builtin = is_builtin(new->cmd);
+	if (new->args == NULL || new->cmd == NULL)
+		return (NULL);
+	new->input_fd = 0;
+	new->output_fd = 1;
 	new->next = NULL;
 	new->prev = prev;
 	return (new);

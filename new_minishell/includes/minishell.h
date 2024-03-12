@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/11 18:39:25 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:55:27 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ typedef struct s_lexer
 typedef struct s_parser
 {
 	char			**args;
-	char			*here_doc;
 	char			*cmd;
-	char			*builtin;
+	char			*delimiter;
+	int				builtin;
 	int				input_fd;
 	int				output_fd;
 	struct s_parser	*next;
@@ -118,6 +118,7 @@ int		error_pre_loop(char *err_message, t_data *data);
 int		ft_strcmp(char *s1, char *s2);
 bool	ft_substr(const char *str, const char *to_find);
 size_t	ft_strlen(const char *str);
+char	*ft_strtrim_cmd(char *cmd);
 char	*ft_strdup(const char *str);
 char	**ft_split(const char *str, const char *charset);
 char	**ft_arrdup(char **arr);
@@ -136,6 +137,8 @@ t_lexer		*lexer_new(char *word, t_lexer *prev);
 void		parser(t_data *data);
 int			parser_add(t_parser **parser, t_lexer *lexer);
 char		*get_cmd(t_lexer *lexer);
+char		*get_delimiter(t_lexer *lexer);
+char		**get_args(t_lexer *lexer, char *cmd);
 t_parser	*parser_new(t_lexer *lexer, t_parser *prev);
 
 /*				Main function		*/

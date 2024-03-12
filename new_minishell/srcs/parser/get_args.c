@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:42:15 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/11 18:51:12 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:09:13 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,38 @@
 static size_t	get_size(t_lexer *lexer, char *cmd)
 {
 	t_lexer	*head;
+	size_t	size;
 
 	head = lexer;
 	while (head->prev)
 	{
-		if (!ft_strcmp(head->word, cmd))
+		if (ft_strcmp(head->word, cmd) == 0)
+			break ;
+		head = head->prev;
 	}
-
+	size = 0;
+	while (head)
+	{
+		if (head->token == PIPE)
+			break ;
+		head = head->next;
+		++size;
+	}
+	return (size);
 }
 
-char	**get_args(t_lexer *lexer, char *cmd)
+char	**get_args2(t_lexer *head, char *cmd, char **result)
 {
 	size_t	index;
-	char	**result;
-	t_lexer	*head;
 
-	if (cmd == NULL)
-		return (NULL);
-	result = ft_calloc(sizeof(char *), get_size() + 1);
-	if (result == NULL)
-		return (NULL);
 	index = 0;
-	head = lexer;
-	while (index < get_size())
+	while (head->prev)
+	{
+		if (ft_strcmp(head->word, cmd) == 0)
+			break ;
+		head = head->prev;
+	}
+	while (head && head->token != PIPE)
 	{
 		result[index++] = ft_strdup(head->word);
 		if (result[index - 1] == NULL)
@@ -45,7 +54,22 @@ char	**get_args(t_lexer *lexer, char *cmd)
 			free_arr(result);
 			return (NULL);
 		}
+		head = head->next;
 	}
 	result[index] = NULL;
 	return (result);
+}
+
+char	**get_args(t_lexer *lexer, char *cmd)
+{
+	char	**result;
+	t_lexer	*head;
+
+	if (cmd == NULL)
+		return (NULL);
+	result = ft_calloc(sizeof(char *), get_size(lexer, cmd) + 1);
+	if (result == NULL)
+		return (NULL);
+	head = lexer;
+	return (get_args2(head, cmd, result));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:48:03 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/08 19:44:17 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:56:16 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ static void	free_parser(t_parser **parser)
 		{
 			free_arr(temp->args);
 			temp->args = NULL;
-		}
-		if (temp->builtin != NULL)
-		{
-			free(temp->builtin);
-			temp->builtin = NULL;
 		}
 		free(temp);
 		temp = NULL;
