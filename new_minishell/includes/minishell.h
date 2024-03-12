@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 15:48:10 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:53:31 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,15 +152,10 @@ t_parser	*parser_new(t_data *data, t_lexer *lexer, t_parser *prev);
 int		execute(t_data *data);
 int		execute_builtin(t_parser *parser, t_data *data);
 int		execute_env(char **env, int output_fd);
-<<<<<<< HEAD
-int		execute_echo(char **args);
-int 	execute_pwd(t_data *data);
-char	*get_binary(char **path, char *cmd);
-=======
 int		execute_echo(char **args, int output_fd);
 int 	execute_pwd(t_data *data, int output_fd);
 int 	execute_cd(t_data *data, char **args);
->>>>>>> refs/remotes/origin/main
+char	*get_binary(char **path, char *cmd);
 
 /*				Main function		*/
 

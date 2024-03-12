@@ -3,18 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/03/12 15:21:01 by vicalvez         ###   ########.fr       */
-=======
-<<<<<<< HEAD
-/*   Updated: 2024/03/12 15:34:48 by gurousta         ###   ########.fr       */
-=======
-/*   Updated: 2024/03/12 14:40:55 by vicalvez         ###   ########.fr       */
->>>>>>> refs/remotes/origin/main
->>>>>>> refs/remotes/origin/main
+/*   Updated: 2024/03/12 15:51:30 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
