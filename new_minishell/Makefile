@@ -29,6 +29,7 @@ lexer_split.c)
 BUILTINS= $(addprefix srcs/executor/builtins/, \
 builtin_echo.c \
 builtin_env.c \
+builtin_pwd.c \
 builtins_executor.c)
 
 EXECUTION_SRCS= $(BUILTINS) $(addprefix srcs/executor/, \
