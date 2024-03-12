@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_add.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 16:19:52 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 13:46:13 by gurousta         ###   ########.fr       */
+/*   Created: 2024/03/12 14:36:48 by gurousta          #+#    #+#             */
+/*   Updated: 2024/03/12 15:12:09 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	parser_add(t_parser **parser, t_lexer *lexer, t_data *data)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	t_parser	*head;
+	size_t	index;
+	size_t	index_result;
+	char	*result;
 
-	head = *parser;
-	if (*parser == NULL)
-	{
-		*parser = parser_new(data, lexer, NULL);
-		if (*parser == NULL)
-			return (0);
-		return (1);
-	}
-	while (head->next)
-		head = head->next;
-	head->next = parser_new(data, lexer, head);
-	if (head->next == NULL)
-		return (0);
-	return (1);
+	if (!s1 || !s2)
+		return (NULL);
+	result = ft_calloc(sizeof(char), ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (result == NULL)
+		return (NULL);
+	index = 0;
+	index_result = 0;
+	while (s1[index])
+		result[index_result++] = s1[index++];
+	index = 0;
+	while (s2[index])
+		result[index_result++] = s2[index++];
+	result[index_result] = '\0';
+	return (result);
 }

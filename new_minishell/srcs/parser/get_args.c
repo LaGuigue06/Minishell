@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:42:15 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 12:09:13 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:14:08 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t	get_size(t_lexer *lexer, char *cmd)
 	size = 0;
 	while (head)
 	{
-		if (head->token == PIPE)
+		if (head->token != WORD)
 			break ;
 		head = head->next;
 		++size;
@@ -42,7 +42,7 @@ char	**get_args2(t_lexer *head, char *cmd, char **result)
 	index = 0;
 	while (head->prev)
 	{
-		if (ft_strcmp(head->word, cmd) == 0)
+		if (ft_strcmp(head->word, cmd) == 0 && ft_strcmp(head->prev->word, cmd) != 0)
 			break ;
 		head = head->prev;
 	}

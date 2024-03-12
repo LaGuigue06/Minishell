@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_add.c                                       :+:      :+:    :+:   */
+/*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 16:19:52 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 13:46:13 by gurousta         ###   ########.fr       */
+/*   Created: 2024/03/12 14:31:51 by gurousta          #+#    #+#             */
+/*   Updated: 2024/03/12 15:15:47 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	parser_add(t_parser **parser, t_lexer *lexer, t_data *data)
+char	*get_binary(char **path, char *cmd)
 {
-	t_parser	*head;
+	char	*current_binary;
+	char	*temp;
+	size_t	index;
 
-	head = *parser;
-	if (*parser == NULL)
+	index = 0;
+	while (path[index])
 	{
-		*parser = parser_new(data, lexer, NULL);
-		if (*parser == NULL)
-			return (0);
-		return (1);
+		temp = ft_strjoin(path[index], "/");
+		current_binary = ft_strjoin(temp, cmd);
+		free(temp);
+		temp = NULL;
+		if (access(current_binary, X_OK | F_OK) != -1)
+			return (current_binary);
+		free(current_binary);
+		current_binary = NULL;
+		++index;
 	}
-	while (head->next)
-		head = head->next;
-	head->next = parser_new(data, lexer, head);
-	if (head->next == NULL)
-		return (0);
-	return (1);
+	return (NULL);
 }

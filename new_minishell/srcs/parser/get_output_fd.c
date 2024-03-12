@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_cmd.c                                          :+:      :+:    :+:   */
+/*   get_output_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 17:54:35 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 15:24:48 by gurousta         ###   ########.fr       */
+/*   Created: 2024/03/12 13:26:41 by gurousta          #+#    #+#             */
+/*   Updated: 2024/03/12 14:20:09 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*get_cmd(t_lexer *lexer, t_data *data)
+int	get_output_fd(t_data *data, t_lexer *lexer)
 {
 	t_lexer	*head;
+	int		output_fd;
 
 	head = lexer;
 	while (head->prev && head->prev->token != PIPE)
 		head = head->prev;
-	if (head->token == 3 || head->token == 4 || head->token == 5 || head->token == 6)
+	while (head->next && head->next->token != PIPE)
 	{
-		if (head->next->next == NULL)
-			error(MISSIMG_COMMAND, 0, data);
-		while (head->next->next && head->next->next->token != PIPE)
+		if (head->token == ONE_RIGHT)
 		{
-			head = head->next->next;
-			if (head->token == WORD)
-				break ;
+			output_fd = open(head->next->word, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			if (output_fd == -1)
+				error(head->next->word, 1, data);
+			return (output_fd);
 		}
+		if (head->token == TWO_RIGHT)
+		{
+			output_fd = open(head->next->word, O_WRONLY | O_CREAT | O_APPEND, 0777);
+			if (output_fd == -1)
+				error(head->next->word, 1, data);
+			return (output_fd);
+		}
+		head = head->next;
 	}
-	if (head->token == 3 || head->token == 4 || head->token == 5 || head->token == 6)
-		return (NULL);
-	return (ft_strtrim_cmd(head->word));
+	return (1);
 }

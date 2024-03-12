@@ -16,7 +16,8 @@ ft_arrdup.c\
 ft_putstr_fd.c\
 ft_strcmp.c\
 error.c\
-ft_strtrim_cmd.c)
+ft_strtrim_cmd.c\
+ft_strjoin.c)
 
 LEXER_SRCS= $(addprefix srcs/lexer/, \
 lexer.c\
@@ -33,7 +34,8 @@ builtin_pwd.c \
 builtins_executor.c)
 
 EXECUTION_SRCS= $(BUILTINS) $(addprefix srcs/executor/, \
-execute.c)
+execute.c\
+get_binary.c)
 
 PARSER_SRCS= $(addprefix srcs/parser/, \
 parser_add.c\
@@ -41,7 +43,9 @@ parser_new.c\
 parser.c\
 get_cmd.c\
 get_args.c\
-get_delimiter.c)
+get_delimiter.c\
+get_input_fd.c\
+get_output_fd.c)
 
 SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(LEXER_SRCS) $(PARSER_SRCS)\
 $(addprefix srcs/, \

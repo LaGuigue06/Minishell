@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 19:42:53 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 11:55:35 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:25:12 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,24 @@ static int	is_builtin(char *word)
 	return (0);
 }
 
-t_parser	*parser_new(t_lexer *lexer, t_parser *prev)
+t_parser	*parser_new(t_data *data, t_lexer *lexer, t_parser *prev)
 {
 	t_parser *new;
 
 	new = ft_calloc(sizeof(t_parser), 1);
 	if (new == NULL)
 		return (NULL);
-	new->cmd = get_cmd(lexer);
+	new->cmd = get_cmd(lexer, data);
 	new->args = get_args(lexer, new->cmd);
 	new->delimiter = get_delimiter(lexer);
 	new->builtin = is_builtin(new->cmd);
 	if (new->args == NULL || new->cmd == NULL)
+	{
+		free_parser(&new);
 		return (NULL);
-	new->input_fd = 0;
-	new->output_fd = 1;
+	}
+	new->input_fd = get_input_fd(data, lexer);
+	new->output_fd = get_output_fd(data, lexer);
 	new->next = NULL;
 	new->prev = prev;
 	return (new);

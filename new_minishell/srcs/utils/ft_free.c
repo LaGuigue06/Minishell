@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:48:03 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 11:56:16 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:07:45 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
-static void	free_lexer(t_lexer **lexer)
+void	free_lexer(t_lexer **lexer)
 {
 	t_lexer	*temp;
 
@@ -41,7 +41,7 @@ static void	free_lexer(t_lexer **lexer)
 	*lexer = NULL;
 }
 
-static void	free_parser(t_parser **parser)
+void	free_parser(t_parser **parser)
 {
 	t_parser	*temp;
 

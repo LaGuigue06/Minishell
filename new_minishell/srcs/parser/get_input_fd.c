@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_add.c                                       :+:      :+:    :+:   */
+/*   get_input_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 16:19:52 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 13:46:13 by gurousta         ###   ########.fr       */
+/*   Created: 2024/03/12 13:25:56 by gurousta          #+#    #+#             */
+/*   Updated: 2024/03/12 14:23:26 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	parser_add(t_parser **parser, t_lexer *lexer, t_data *data)
+int	get_input_fd(t_data *data, t_lexer *lexer)
 {
-	t_parser	*head;
+	t_lexer	*head;
+	int		input_fd;
 
-	head = *parser;
-	if (*parser == NULL)
+	head = lexer;
+	while (head->prev && head->prev->token != PIPE)
+		head = head->prev;
+	while (head->next && head->next->token != PIPE)
 	{
-		*parser = parser_new(data, lexer, NULL);
-		if (*parser == NULL)
-			return (0);
-		return (1);
-	}
-	while (head->next)
+		if (head->token == ONE_LEFT)
+		{
+			input_fd = open(head->next->word, O_RDONLY, 0777);
+			if (input_fd == -1)
+				error(head->next->word, 1, data);
+			return (input_fd);
+		}
 		head = head->next;
-	head->next = parser_new(data, lexer, head);
-	if (head->next == NULL)
-		return (0);
-	return (1);
+	}
+	return (0);
 }
