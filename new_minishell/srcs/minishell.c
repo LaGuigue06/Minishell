@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 12:05:54 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:39:51 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_data(t_data *data)
 		printf("voici les arguments:\n");
 		while (parser_head->args[index_parser])
 			printf("%s\n", parser_head->args[index_parser++]);
-		printf("\nvoici le builtin: %d\n", parser_head->builtin);
+		printf("voici le builtin: %d\n", parser_head->builtin);
 		printf("voici le delimiter du here_doc: %s\n", parser_head->delimiter);
 		printf("voici le input_fd: %d\n", parser_head->input_fd);
 		printf("voici le output_fd: %d\n", parser_head->output_fd);
@@ -76,9 +76,9 @@ void	minishell(t_data *data)
 	add_history(data->line);
 	lexer(data);
 	parser(data);
-	print_data(data);
+	//print_data(data);
 	//expandor;
-	//execute(data);
+	execute(data->parser, data);
 	reset_data(data);
 }
 

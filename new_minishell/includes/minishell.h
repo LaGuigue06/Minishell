@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 11:55:27 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:20:29 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,14 @@ char		*get_cmd(t_lexer *lexer);
 char		*get_delimiter(t_lexer *lexer);
 char		**get_args(t_lexer *lexer, char *cmd);
 t_parser	*parser_new(t_lexer *lexer, t_parser *prev);
+
+
+/*				Execute functions	*/
+
+int		execute(t_parser *parser, t_data *data);
+int		execute_builtin(t_parser *parser, t_data *data);
+int		execute_env(char **env, int output_fd);
+int		execute_echo(char **args);
 
 /*				Main function		*/
 

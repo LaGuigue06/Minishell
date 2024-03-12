@@ -26,8 +26,13 @@ parse_quote.c\
 check_token.c\
 lexer_split.c)
 
-EXECUTION_SRCS= $(addprefix srcs/execution/, \
-)
+BUILTINS= $(addprefix srcs/executor/builtins/, \
+builtin_echo.c \
+builtin_env.c \
+builtins_executor.c)
+
+EXECUTION_SRCS= $(BUILTINS) $(addprefix srcs/executor/, \
+execute.c)
 
 PARSER_SRCS= $(addprefix srcs/parser/, \
 parser_add.c\
