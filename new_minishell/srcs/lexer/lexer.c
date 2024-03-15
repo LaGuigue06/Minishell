@@ -6,7 +6,7 @@
 /*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:45:56 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/11 17:13:01 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:07:43 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	lexer(t_data *data)
 	all_word = lexer_split(data->line);		// MUST DO A SPECIAL SPLIT FOR IT !!!!
 	if (all_word == NULL)
 		return (error(MALLOC_ERROR, 0, data));
+	if (all_word[0] == NULL)
+		return (reset_data(data));
 	index = 0;
 	while (all_word[index])
 	{

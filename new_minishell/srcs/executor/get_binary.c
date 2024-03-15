@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:31:51 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/12 16:01:55 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:44:22 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_binary(char **path, char *cmd)
 		current_binary = ft_strjoin(temp, cmd);
 		free(temp);
 		temp = NULL;
-		if (access(current_binary, X_OK | F_OK) != -1)
+		if (access(current_binary, F_OK | X_OK) == 0)
 			return (current_binary);
 		free(current_binary);
 		current_binary = NULL;

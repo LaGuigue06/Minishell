@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 15:51:30 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:46:42 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	minishell(t_data *data)
 	add_history(data->line);
 	lexer(data);
 	parser(data);
-	print_data(data);
+	//print_data(data);
 	//expandor;
 	execute(data);
 	reset_data(data);
