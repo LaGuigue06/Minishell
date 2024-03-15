@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -lreadline
+CFLAGS = -g -Wall -Wextra -lreadline
 INCLUDES = -I./includes
 
 UTILS_SRCS= $(addprefix srcs/utils/, \
@@ -17,7 +17,8 @@ ft_putstr_fd.c\
 ft_strcmp.c\
 error.c\
 ft_strtrim_cmd.c\
-ft_strjoin.c)
+ft_strjoin.c\
+ft_strncmp.c)
 
 LEXER_SRCS= $(addprefix srcs/lexer/, \
 lexer.c\
@@ -48,7 +49,13 @@ get_delimiter.c\
 get_input_fd.c\
 get_output_fd.c)
 
-SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(LEXER_SRCS) $(PARSER_SRCS)\
+EXPANDER_SRC= $(addprefix srcs/expander/, \
+expander.c\
+get_all_variable.c\
+get_total_size.c\
+copy_all.c)
+
+SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(LEXER_SRCS) $(PARSER_SRCS) $(EXPANDER_SRC)\
 $(addprefix srcs/, \
 minishell.c\
 init_value.c)

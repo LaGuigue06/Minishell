@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:48:03 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 14:07:45 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:38:10 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ void	free_arr(char **arr)
 
 	index = 0;
 	while (arr[index])
-		free(arr[index++]);
+	{
+		if (arr[index] != NULL)
+			free(arr[index]);
+		arr[index] = NULL;
+		++index;
+	}
 	free(arr);
 }
 
@@ -54,6 +59,8 @@ void	free_parser(t_parser **parser)
 			free_arr(temp->args);
 			temp->args = NULL;
 		}
+		if (temp->cmd != NULL)
+			free(temp->cmd);
 		free(temp);
 		temp = NULL;
 	}
@@ -74,4 +81,5 @@ void	free_all(t_data *data)
 		free_arr(data->env);
 	if (data->path != NULL)
 		free_arr(data->path);
+	exit(0);
 }

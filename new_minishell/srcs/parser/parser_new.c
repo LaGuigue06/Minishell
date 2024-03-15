@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 19:42:53 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 15:25:12 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:27:20 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_parser	*parser_new(t_data *data, t_lexer *lexer, t_parser *prev)
 	if (new == NULL)
 		return (NULL);
 	new->cmd = get_cmd(lexer, data);
-	new->args = get_args(lexer, new->cmd);
+	new->args = get_args(data, lexer, new->cmd);
 	new->delimiter = get_delimiter(lexer);
 	new->builtin = is_builtin(new->cmd);
 	if (new->args == NULL || new->cmd == NULL)

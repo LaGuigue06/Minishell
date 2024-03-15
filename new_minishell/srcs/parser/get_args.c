@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:42:15 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 15:14:08 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:54:24 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static size_t	get_size(t_lexer *lexer, char *cmd)
 	return (size);
 }
 
-char	**get_args2(t_lexer *head, char *cmd, char **result)
+char	**get_args2(t_data *data, t_lexer *head, char *cmd, char **result)
 {
 	size_t	index;
 
@@ -48,7 +48,7 @@ char	**get_args2(t_lexer *head, char *cmd, char **result)
 	}
 	while (head && head->token != PIPE)
 	{
-		result[index++] = ft_strdup(head->word);
+		result[index++] = expander(data, head->word); // potentiellement faire l'expander ici !!!
 		if (result[index - 1] == NULL)
 		{
 			free_arr(result);
@@ -60,7 +60,7 @@ char	**get_args2(t_lexer *head, char *cmd, char **result)
 	return (result);
 }
 
-char	**get_args(t_lexer *lexer, char *cmd)
+char	**get_args(t_data *data, t_lexer *lexer, char *cmd)
 {
 	char	**result;
 	t_lexer	*head;
@@ -71,5 +71,5 @@ char	**get_args(t_lexer *lexer, char *cmd)
 	if (result == NULL)
 		return (NULL);
 	head = lexer;
-	return (get_args2(head, cmd, result));
+	return (get_args2(data, head, cmd, result));
 }

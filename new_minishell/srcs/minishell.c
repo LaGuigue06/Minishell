@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/13 16:46:42 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:04:39 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	minishell(t_data *data)
 	lexer(data);
 	parser(data);
 	//print_data(data);
-	//expandor;
-	execute(data);
+	//execute(data);
 	reset_data(data);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 15:53:31 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:53:43 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	free_lexer(t_lexer **lexer);
 void	free_parser(t_parser **parser);
 int		error_pre_loop(char *err_message, t_data *data);
 int		ft_strcmp(char *s1, char *s2);
+int		ft_strncmp(char *s1, char *s2, size_t n);
 bool	ft_substr(const char *str, const char *to_find);
 size_t	ft_strlen(const char *str);
 char	*ft_strtrim_cmd(char *cmd);
@@ -143,9 +144,15 @@ int			get_input_fd(t_data *data, t_lexer *lexer);
 int			get_output_fd(t_data *data, t_lexer *lexer);
 char		*get_cmd(t_lexer *lexer, t_data *data);
 char		*get_delimiter(t_lexer *lexer);
-char		**get_args(t_lexer *lexer, char *cmd);
+char		**get_args(t_data *data, t_lexer *lexer, char *cmd);
 t_parser	*parser_new(t_data *data, t_lexer *lexer, t_parser *prev);
 
+/*				Expander fucntion	*/
+
+void		copy_all(t_data *data, char *result, char *str, char **variable);
+size_t		get_total_size(t_data *data, char *str, char **variables);
+char		*expander(t_data *data, char *str);
+char		**get_all_variable(char *str);
 
 /*				Execute functions	*/
 
