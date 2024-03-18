@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/15 20:04:39 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/18 09:34:20 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	minishell(t_data *data)
 {
 	data->line = readline(GREEN"Mnishell "RED">> " RESET);
 	if (data->line == NULL || data->line[0] == '\0')
-		reset_data(data);
+		return ;
+		//reset_data(data);
 	add_history(data->line);
 	lexer(data);
 	parser(data);

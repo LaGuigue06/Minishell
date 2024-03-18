@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:45:51 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/15 20:06:49 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/17 15:59:27 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,18 @@ char	*expander(t_data *data, char *str)
 	variable = get_all_variable(str);
 	if (variable == NULL)
 		return (NULL);
-	result = ft_calloc(sizeof(char), get_total_size(data, str, variable) + 1);
-	printf("mon total size = %ld\n", get_total_size(data, str, variable));
+	int i = 0;
+	printf("pour str: %s\n", str);
+	while (variable[i])
+		printf("%s\n", variable[i++]);
+	result = ft_calloc(sizeof(char), get_total_size(data, str, variable) + 100000);
 	if (result == NULL)
 	{
 		free_arr(variable);
 		return (NULL);
 	}
 	copy_all(data, result, str, variable);
+	printf("result: %s\n", result);
 	free_arr(variable);
 	return (result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/15 19:53:43 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/16 15:56:32 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ t_parser	*parser_new(t_data *data, t_lexer *lexer, t_parser *prev);
 
 void		copy_all(t_data *data, char *result, char *str, char **variable);
 size_t		get_total_size(t_data *data, char *str, char **variables);
+int			expander_cmp(char *variable, char *env);
 char		*expander(t_data *data, char *str);
 char		**get_all_variable(char *str);
 

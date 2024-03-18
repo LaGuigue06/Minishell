@@ -53,7 +53,8 @@ EXPANDER_SRC= $(addprefix srcs/expander/, \
 expander.c\
 get_all_variable.c\
 get_total_size.c\
-copy_all.c)
+copy_all.c\
+expander_cmp.c)
 
 SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(LEXER_SRCS) $(PARSER_SRCS) $(EXPANDER_SRC)\
 $(addprefix srcs/, \

@@ -3,16 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_total_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:06:51 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/15 20:05:04 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/17 15:52:40 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-size_t	get_size_env(t_data *data, char **variable)
+static	size_t	get_env_size(char *env)
+{
+	size_t	index;
+	size_t	size;
+
+	index = 0;
+	size = 0;
+	while (env[index] && env[index] != '=')
+		++index;
+	while (env[index])
+	{
+		++index;
+		++size;
+	}
+	return (size);
+}
+
+static size_t	get_size_env(t_data *data, char **variable)
 {
 	size_t	size;
 	size_t	index;
@@ -26,9 +43,9 @@ size_t	get_size_env(t_data *data, char **variable)
 		env_index = 0;
 		while (data->env[env_index])
 		{
-			if (!ft_strncmp(variable[index], data->env[env_index], ft_strlen(variable[index])))
+			if (expander_cmp(variable[index], data->env[env_index]) == 0)
 			{
-				size = size + ft_strlen(data->env[index] + ft_strlen(variable[index]) + 1);
+				size = size + get_env_size(data->env[env_index]);
 				break ;
 			}
 			++env_index;
@@ -49,7 +66,7 @@ size_t	get_total_size(t_data *data, char *str, char **variables)
 	stop = '\0';
 	while (str[index])
 	{
-		if (str[index] == 34 || str[index] == 39)
+		if ((str[index] == 34 || str[index] == 39) && stop == '\0')
 			stop = str[index++];
 		if (str[index] && str[index] == stop)
 		{
