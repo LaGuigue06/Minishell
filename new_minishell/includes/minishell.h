@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/16 15:56:32 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:45:11 by guillaumero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define ONE_LEFT_SYNTAX_ERROR "Minishell: syntax error near unexpected token `<'\n"
 # define TWO_LEFT_SYNTAX_ERROR "Minishell: syntax error near unexpected token `<<'\n"
 # define NEWLINE_SYNTAX_ERROR "Minishell: syntax error near unexpected token `newline'\n"
+# define PIPE_ERROR "Minishell: pipe failed to initialize"
 
 /*				COLORS				*/
 
@@ -95,6 +96,7 @@ typedef struct s_parser
 typedef struct s_data
 {
 	int			pipe_count;
+	int			*pid;
 	char		*line;
 	char		*pwd;
 	char		*old_pwd;
@@ -157,12 +159,14 @@ char		**get_all_variable(char *str);
 
 /*				Execute functions	*/
 
+void	handle_cmd(t_data *data, t_parser *parser);
 int		execute(t_data *data);
 int		execute_builtin(t_parser *parser, t_data *data);
 int		execute_env(char **env, int output_fd);
 int		execute_echo(char **args, int output_fd);
 int 	execute_pwd(t_data *data, int output_fd);
 int 	execute_cd(t_data *data, char **args);
+int		simple_cmd(t_data *data, t_parser *parser);
 char	*get_binary(char **path, char *cmd);
 
 /*				Main function		*/

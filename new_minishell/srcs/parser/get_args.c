@@ -3,28 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   get_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:42:15 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/15 19:54:24 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:47:15 by guillaumero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static size_t	get_size(t_lexer *lexer, char *cmd)
+static size_t	get_size(t_data *data, t_lexer *lexer, char *cmd)
 {
 	t_lexer	*head;
+	char	*temp;
 	size_t	size;
 
-	head = lexer;
-	while (head->prev)
-	{
-		if (ft_strcmp(head->word, cmd) == 0)
-			break ;
-		head = head->prev;
-	}
 	size = 0;
+	temp = NULL;
+	head = lexer;
+	while (head->prev && head->prev->token != PIPE)
+		head = head->prev;
+	while (head)
+	{
+		temp = expander(data, head->word);
+		if (ft_strcmp(temp, cmd) == 0)
+			break ;
+		head = head->next;
+	}
+	if (temp != NULL)
+		free(temp);
 	while (head)
 	{
 		if (head->token != WORD)
@@ -48,7 +55,7 @@ char	**get_args2(t_data *data, t_lexer *head, char *cmd, char **result)
 	}
 	while (head && head->token != PIPE)
 	{
-		result[index++] = expander(data, head->word); // potentiellement faire l'expander ici !!!
+		result[index++] = expander(data, head->word);
 		if (result[index - 1] == NULL)
 		{
 			free_arr(result);
@@ -67,7 +74,7 @@ char	**get_args(t_data *data, t_lexer *lexer, char *cmd)
 
 	if (cmd == NULL)
 		return (NULL);
-	result = ft_calloc(sizeof(char *), get_size(lexer, cmd) + 1);
+	result = ft_calloc(sizeof(char *), get_size(data, lexer, cmd) + 1);
 	if (result == NULL)
 		return (NULL);
 	head = lexer;

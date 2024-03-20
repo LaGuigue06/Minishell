@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:54:35 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 15:24:48 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:36:07 by guillaumero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ char	*get_cmd(t_lexer *lexer, t_data *data)
 	}
 	if (head->token == 3 || head->token == 4 || head->token == 5 || head->token == 6)
 		return (NULL);
-	return (ft_strtrim_cmd(head->word));
+	return (expander(data, head->word));
 }

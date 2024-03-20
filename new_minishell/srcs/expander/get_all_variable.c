@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_all_variable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:00:05 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/17 15:22:12 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:02:09 by guillaumero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

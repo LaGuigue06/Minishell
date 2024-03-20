@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:59:15 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/08 19:51:48 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:45:37 by guillaumero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_lexer	*lexer_new(char *word, t_lexer *prev)
 	new_lexer = ft_calloc(sizeof(t_lexer), 1);
 	if (new_lexer == NULL)
 		return (NULL);
+	new_lexer->word = NULL;
 	new_lexer->word = ft_strdup(word);
 	if (new_lexer->word == NULL)
 		return (NULL);

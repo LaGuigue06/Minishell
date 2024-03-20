@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:48:03 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/15 16:38:10 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:47:59 by guillaumero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,14 @@ void	free_arr(char **arr)
 	while (arr[index])
 	{
 		if (arr[index] != NULL)
+		{
 			free(arr[index]);
-		arr[index] = NULL;
+			arr[index] = NULL;
+		}
 		++index;
 	}
-	free(arr);
+	if (arr != NULL)
+		free(arr);
 }
 
 void	free_lexer(t_lexer **lexer)
@@ -60,10 +63,19 @@ void	free_parser(t_parser **parser)
 			temp->args = NULL;
 		}
 		if (temp->cmd != NULL)
+		{
 			free(temp->cmd);
+			temp->cmd = NULL;
+		}
+		if (temp->delimiter != NULL)
+		{
+			free(temp->delimiter);
+			temp->delimiter = NULL;
+		}
 		free(temp);
 		temp = NULL;
 	}
+	*parser = NULL;
 }
 
 void	free_data(t_data *data)

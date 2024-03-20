@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   handle_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 19:28:31 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/18 11:24:02 by guillaumero      ###   ########.fr       */
+/*   Created: 2024/03/18 12:44:29 by guillaumero       #+#    #+#             */
+/*   Updated: 2024/03/18 12:44:46 by guillaumero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	parser(t_data *data)
+void	handle_cmd(t_data *data, t_parser *parser)
 {
-	t_lexer	*head;
-
-	head = data->lexer;
-	while (head->next)
+	char	*binary;
+	
+	binary = get_binary(data->path, parser->cmd);
+	if (binary == NULL)
+		binary = ft_strdup(parser->cmd);
+	if (execve(binary, parser->args, data->env) == -1)
 	{
-		if (head->token == PIPE)
-			if (parser_add(&data->parser, head, data) == 0)
-				return (error(MISSIMG_COMMAND, 0, data));
-		head = head->next;
+		write(STDERR_FILENO, "Minishell: ", 11);
+		perror(binary);
+		free(binary);
+		exit(1);
 	}
-	if (parser_add(&data->parser, head, data) == 0)
-		return (error(MISSIMG_COMMAND, 0, data));
 }

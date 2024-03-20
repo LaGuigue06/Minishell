@@ -37,7 +37,9 @@ builtins_executor.c)
 
 EXECUTION_SRCS= $(BUILTINS) $(addprefix srcs/executor/, \
 execute.c\
-get_binary.c)
+get_binary.c\
+simple_cmd.c\
+handle_cmd.c)
 
 PARSER_SRCS= $(addprefix srcs/parser/, \
 parser_add.c\
