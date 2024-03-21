@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:22 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/21 12:23:27 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:26:49 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@ static int is_already_exported(char *str, char **env)
     {
         env_varname = ft_substr(env[i], 0, ft_varname_len(env[i]));
         if (ft_strcmp(varname, env_varname) == 0)
+        {
+            free(env_varname);
+            free(varname);
             return (1);
+        }
+        free(env_varname);
         i++;
     }
+    free(varname);
     return (0);
 }
 
@@ -44,10 +50,13 @@ static void replace_env(char *var, char **env)
         if (ft_strcmp(env_varname, varname) == 0)
         {
             env[i] = var;
+            free(env_varname);
             break ;
         }
+        free(env_varname);
         i++;
     }
+    free(varname);
 }
 
 int execute_export(t_data *data, char **args, int output_fd)
