@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/18 16:37:54 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/21 12:02:29 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

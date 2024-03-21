@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 11:39:03 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/21 11:39:57 by vicalvez         ###   ########.fr       */
+/*   Created: 2024/03/21 12:11:15 by vicalvez          #+#    #+#             */
+/*   Updated: 2024/03/21 12:11:22 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*sub;
-	size_t	i;
+	int		i;
+	char	*result;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen((char *)s))
-		len = 0;
-	if (ft_strlen((char *)s) - start < len)
-		len = ft_strlen((char *)s) - start;
-	sub = ft_calloc(sizeof(char), len + 1);
-	if (!sub)
-		return (NULL);
-	if (len <= 0)
-		return (sub);
-	while (s[i + start] && i < len)
+	result = 0;
+	while (s[i])
 	{
-		sub[i] = s[i + start];
+		if (s[i] == c % 256)
+		{
+			result = (char *)(s + i);
+			break ;
+		}
 		i++;
 	}
-	sub[i] = 0;
-	return (sub);
+	if (c % 256 == 0)
+	{
+		result = (char *)(s + i);
+	}
+	return (result);
 }

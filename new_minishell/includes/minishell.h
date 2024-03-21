@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/18 12:45:11 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/21 12:19:24 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,18 @@ void	free_parser(t_parser **parser);
 int		error_pre_loop(char *err_message, t_data *data);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, size_t n);
-bool	ft_substr(const char *str, const char *to_find);
+int		ft_chararr_size(char **arr);
+int		ft_varname_len(char *var);
+bool	ft_issubstr(const char *str, const char *to_find);
 size_t	ft_strlen(const char *str);
 char	*ft_strtrim_cmd(char *cmd);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *str);
 char	**ft_split(const char *str, const char *charset);
-char	**ft_arrdup(char **arr);
+char	**ft_arrdup(char **arr, int additional_mem);
+char	**ft_arrdup_exclude(char **arr, char *excluded);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strchr(const char *s, int c);
 
 /*				Lexer Function		*/
 
@@ -166,6 +171,8 @@ int		execute_env(char **env, int output_fd);
 int		execute_echo(char **args, int output_fd);
 int 	execute_pwd(t_data *data, int output_fd);
 int 	execute_cd(t_data *data, char **args);
+int		execute_export(t_data *data, char **args, int output_fd);
+int 	execute_unset(t_data *data, char **args, int output_fd);
 int		simple_cmd(t_data *data, t_parser *parser);
 char	*get_binary(char **path, char *cmd);
 

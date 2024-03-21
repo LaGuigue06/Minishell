@@ -9,6 +9,7 @@ ft_bzero.c\
 ft_calloc.c\
 ft_free.c\
 ft_split.c\
+ft_issubstr.c \
 ft_substr.c\
 ft_strlen.c\
 ft_strdup.c\
@@ -18,7 +19,10 @@ ft_strcmp.c\
 error.c\
 ft_strtrim_cmd.c\
 ft_strjoin.c\
-ft_strncmp.c)
+ft_strncmp.c \
+ft_chararr_size.c \
+ft_arrdup_exclude.c\
+ft_strchr.c)
 
 LEXER_SRCS= $(addprefix srcs/lexer/, \
 lexer.c\
@@ -33,6 +37,8 @@ builtin_echo.c \
 builtin_env.c \
 builtin_pwd.c \
 builtin_cd.c \
+builtin_export.c \
+builtin_unset.c \
 builtins_executor.c)
 
 EXECUTION_SRCS= $(BUILTINS) $(addprefix srcs/executor/, \
