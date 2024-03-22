@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:20:16 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/18 16:11:18 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/22 18:32:31 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	forking(t_data *data, t_parser *parser, int *fd_pipe, int fd_in, bool is_new)
+static void	forking(t_data *data,
+	t_parser *parser, int *fd_pipe, int fd_in, bool is_new)
 {
 	static int	i = 0;
 
@@ -46,14 +47,11 @@ void	wait_all(t_data *data)
 
 	i = 0;
 	while (i < data->pipe_count)
-	{
-		waitpid(data->pid[i], &status, 0);
-		++i;
-	}
+		waitpid(data->pid[i++], &status, 0);
 	waitpid(data->pid[i], &status, 0);
 }
 
-int execute(t_data *data)
+int	execute(t_data *data)
 {
 	t_parser	*head;
 	int			fd_pipe[2];

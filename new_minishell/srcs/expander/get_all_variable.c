@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_all_variable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:00:05 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/18 17:02:09 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/22 16:45:40 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ char	*get_current_variable(char *str)
 	size_t	index;
 
 	index = 0;
-	while (str[index] && str[index] != ' ' && str[index] != 39 && str[index] != 34)
+	while (str[index] && str[index] != ' ' && str[index] != 39
+		&& str[index] != 34 && str[index] != '$')
 		++index;
 	result = ft_calloc(sizeof(char), index + 2);
 	if (result == NULL)
 		return (NULL);
 	index = 0;
-	while (str[index] && str[index] != ' ' && str[index] != 39 && str[index] != 34)
+	while (str[index] && str[index] != ' ' && str[index] != 39
+		&& str[index] != 34 && str[index] != '$')
 	{
 		result[index] = str[index];
 		++index;
@@ -39,7 +41,7 @@ size_t	get_variable_number(char *str)
 	char	stop;
 	size_t	index;
 	size_t	count;
-	
+
 	index = 0;
 	count = 0;
 	stop = '\0';
@@ -52,28 +54,23 @@ size_t	get_variable_number(char *str)
 		if (str[index] && str[index] == '$' && stop != 39)
 		{
 			++count;
-			while (str[index] && str[index] != ' ' && str[index] != 34 && str[index] != 39)
+			++index;
+			while (str[index] && str[index] != ' '
+				&& str[index] != 34 && str[index] != 39 && str[index] != '$')
 				++index;
 		}
-		if (str[index])
-			++index;			
+		else if (str[index])
+			++index;
 	}
 	return (count);
 }
 
-char	**get_all_variable(char *str)
+static void	get_all_variable2(char **result, char *str,
+	size_t index, size_t index_result)
 {
-	char	**result;
 	char	stop;
-	size_t	index;
-	size_t	index_result;
-	
-	index_result = 0;
-	index = 0;
+
 	stop = '\0';
-	result = ft_calloc(sizeof(char *), get_variable_number(str) + 1);
-	if (result == NULL)
-		return (NULL);
 	while (str[index])
 	{
 		if ((str[index] == 34 || str[index] == 39) && stop == '\0')
@@ -82,18 +79,35 @@ char	**get_all_variable(char *str)
 			stop = '\0';
 		if (str[index] && str[index] == '$' && stop != 39)
 		{
-			result[index_result++] = get_current_variable(str + index + 1);
+			++index;
+			result[index_result++] = get_current_variable(str + index);
 			if (result[index_result - 1] == NULL)
 			{
 				free_arr(result);
-				return (NULL);
+				break ;
 			}
-			while (str[index] && str[index] != ' ' && str[index] != stop && str[index] != 39)
+			while (str[index] && str[index] != ' '
+				&& str[index] != stop && str[index] != 39 && str[index] != '$')
 				++index;
 		}
-		if (str[index])
+		else if (str[index])
 			++index;
 	}
-	result[index_result] = NULL;
+}
+
+char	**get_all_variable(char *str)
+{
+	char	**result;
+	size_t	index;
+	size_t	index_result;
+
+	index_result = 0;
+	index = 0;
+	result = ft_calloc(sizeof(char *), get_variable_number(str) + 1);
+	if (result == NULL)
+		return (NULL);
+	get_all_variable2(result, str, index, index_result);
+	if (result == NULL)
+		return (NULL);
 	return (result);
 }

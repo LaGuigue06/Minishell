@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:26:11 by guillaumero       #+#    #+#             */
-/*   Updated: 2024/03/18 12:26:33 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/22 17:55:46 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	simple_cmd(t_data *data, t_parser *parser)
 		handle_cmd(data, parser);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		return(1);
+		return (1);
 	return (0);
 }

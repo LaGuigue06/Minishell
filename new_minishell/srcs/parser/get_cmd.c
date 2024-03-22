@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:54:35 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/18 10:36:07 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/22 18:10:24 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*get_cmd(t_lexer *lexer, t_data *data)
 	head = lexer;
 	while (head->prev && head->prev->token != PIPE)
 		head = head->prev;
-	if (head->token == 3 || head->token == 4 || head->token == 5 || head->token == 6)
+	if (head->token == 3 || head->token == 4
+		|| head->token == 5 || head->token == 6)
 	{
 		if (head->next->next == NULL)
 			error(MISSIMG_COMMAND, 0, data);
@@ -30,7 +31,8 @@ char	*get_cmd(t_lexer *lexer, t_data *data)
 				break ;
 		}
 	}
-	if (head->token == 3 || head->token == 4 || head->token == 5 || head->token == 6)
+	if (head->token == 3 || head->token == 4
+		|| head->token == 5 || head->token == 6)
 		return (NULL);
 	return (expander(data, head->word));
 }

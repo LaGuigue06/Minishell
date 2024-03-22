@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:11:03 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/15 14:18:17 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:06:30 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 	size_t	index;
 
 	index = 0;
-	while (s1[index] && s2[index] && s1[index] == s2[index] && n != 0 && index < n - 1)
+	while (s1[index] && s2[index]
+		&& s1[index] == s2[index] && n != 0 && index < n - 1)
 		++index;
 	return (s1[index] - s2[index]);
 }

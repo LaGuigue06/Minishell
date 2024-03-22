@@ -22,7 +22,8 @@ ft_strjoin.c\
 ft_strncmp.c \
 ft_chararr_size.c \
 ft_arrdup_exclude.c\
-ft_strchr.c)
+ft_strchr.c\
+ft_strtrim.c)
 
 LEXER_SRCS= $(addprefix srcs/lexer/, \
 lexer.c\
@@ -30,7 +31,9 @@ lexer_add.c\
 lexer_new.c\
 parse_quote.c\
 check_token.c\
-lexer_split.c)
+get_lexer.c\
+add_token.c\
+add_word.c)
 
 BUILTINS= $(addprefix srcs/executor/builtins/, \
 builtin_echo.c \

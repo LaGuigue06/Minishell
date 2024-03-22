@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 19:42:53 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/18 10:47:16 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/22 18:06:46 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,33 @@
 
 static int	is_builtin(char *word)
 {
-	if (!ft_strcmp(word, "\"echo\"") || !ft_strcmp(word, "'echo'") || !ft_strcmp(word, "echo"))
+	if (!ft_strcmp(word, "\"echo\"")
+		|| !ft_strcmp(word, "'echo'") || !ft_strcmp(word, "echo"))
 		return (1);
-	if (!ft_strcmp(word, "\"cd\"") || !ft_strcmp(word, "'cd'") || !ft_strcmp(word, "cd"))
+	if (!ft_strcmp(word, "\"cd\"")
+		|| !ft_strcmp(word, "'cd'") || !ft_strcmp(word, "cd"))
 		return (1);
-	if (!ft_strcmp(word, "\"pwd\"") || !ft_strcmp(word, "'pwd'") || !ft_strcmp(word, "pwd"))
+	if (!ft_strcmp(word, "\"pwd\"")
+		|| !ft_strcmp(word, "'pwd'") || !ft_strcmp(word, "pwd"))
 		return (1);
-	if (!ft_strcmp(word, "\"export\"") || !ft_strcmp(word, "'export'") || !ft_strcmp(word, "export"))
+	if (!ft_strcmp(word, "\"export\"")
+		|| !ft_strcmp(word, "'export'") || !ft_strcmp(word, "export"))
 		return (1);
-	if (!ft_strcmp(word, "\"unset\"") || !ft_strcmp(word, "'unset'") || !ft_strcmp(word, "unset"))
+	if (!ft_strcmp(word, "\"unset\"")
+		|| !ft_strcmp(word, "'unset'") || !ft_strcmp(word, "unset"))
 		return (1);
-	if (!ft_strcmp(word, "\"env\"") || !ft_strcmp(word, "'env'") || !ft_strcmp(word, "env"))
+	if (!ft_strcmp(word, "\"env\"")
+		|| !ft_strcmp(word, "'env'") || !ft_strcmp(word, "env"))
 		return (1);
-	if (!ft_strcmp(word, "\"exit\"") || !ft_strcmp(word, "'exit'") || !ft_strcmp(word, "exit"))
+	if (!ft_strcmp(word, "\"exit\"")
+		|| !ft_strcmp(word, "'exit'") || !ft_strcmp(word, "exit"))
 		return (1);
 	return (0);
 }
 
 t_parser	*parser_new(t_data *data, t_lexer *lexer, t_parser *prev)
 {
-	t_parser *new;
+	t_parser	*new;
 
 	new = ft_calloc(sizeof(t_parser), 1);
 	if (new == NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:45:51 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/18 10:38:20 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/22 15:20:26 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*expander(t_data *data, char *str)
 	variable = get_all_variable(str);
 	if (variable == NULL)
 		return (NULL);
-	result = ft_calloc(sizeof(char), get_total_size(data, str, variable) + 100000);
+	result = ft_calloc(sizeof(char), get_total_size(data, str, variable) + 1);
 	if (result == NULL)
 	{
 		free_arr(variable);

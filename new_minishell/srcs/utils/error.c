@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:23:30 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/12 14:15:38 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:31:27 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ int	error_pre_loop(char *error_msg, t_data *data)
 	{
 		free_arr(data->path);
 		data->path = NULL;
+	}
+	if (data->old_pwd != NULL)
+	{
+		free(data->old_pwd);
+		data->old_pwd = NULL;
+	}
+	if (data->pwd != NULL)
+	{
+		free(data->pwd);
+		data->pwd = NULL;
 	}
 	return (0);
 }

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/21 12:02:29 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:42:50 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	g_error_num;
 
 void	print_data(t_data *data)
 {
@@ -65,6 +67,9 @@ void	print_data(t_data *data)
 void	reset_data(t_data *data)
 {
 	free_data(data);
+	if (data->line != NULL)
+		free(data->line);
+	data->line = NULL;
 	minishell(data);
 }
 
@@ -89,6 +94,7 @@ int	main(int argc, char **argv, char **env)
 		return (EXIT_FAILURE);
 	using_history();
 	minishell(&data);
-	//rl_clear_history();
+	rl_clear_history();
+	free_all(&data);
 	return (EXIT_SUCCESS);
 }

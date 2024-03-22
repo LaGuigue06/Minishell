@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:48:03 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/18 11:47:59 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/22 17:57:43 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

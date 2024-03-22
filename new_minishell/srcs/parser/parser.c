@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:28:31 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/18 11:24:02 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/03/22 15:12:49 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

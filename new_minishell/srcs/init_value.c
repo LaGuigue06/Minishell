@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_value.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:25:17 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/21 11:38:36 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:29:51 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int get_path_pwd_oldpwd(t_data *data)
+static int	get_path_pwd_oldpwd(t_data *data)
 {
 	size_t	index;
 
@@ -26,11 +26,13 @@ static int get_path_pwd_oldpwd(t_data *data)
 				return (0);
 		}
 		else if (ft_issubstr(data->env[index], "PWD="))
-			data->pwd = data->env[index] + 4;
+			data->pwd = ft_strdup(data->env[index] + 4);
 		else if (ft_issubstr(data->env[index], "OLDPWD="))
-			data->old_pwd = data->env[index] + 7;
+			data->old_pwd = ft_strdup(data->env[index] + 7);
 		++index;
 	}
+	if (data->old_pwd == NULL || data->pwd == NULL)
+		return (0);
 	return (1);
 }
 
@@ -50,5 +52,6 @@ int	init_value(t_data *data, char **env, char **argv, int argc)
 		return (error_pre_loop(MALLOC_ERROR, data));
 	data->lexer = NULL;
 	data->parser = NULL;
+	g_error_num = 0;
 	return (1);
 }
