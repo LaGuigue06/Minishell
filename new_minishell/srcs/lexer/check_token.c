@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:05:38 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/07 18:16:39 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:50:19 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	check_token(t_data *data)
 			return (error(PIPE_PROMP_TOKEN, 0, data));
 		else if (head->token != WORD && head->next->token != WORD)
 			return (print_correct_token(data, head->next));
+		else if (head->token == PIPE && head->prev == NULL)
+			return (error(PIPE_SYNTAX_ERROR, 0, data));
 		head = head->next;
 	}
 	if (head->token != WORD)

@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/22 18:42:02 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:30:38 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void		*ft_calloc(size_t num, size_t size);
 void		error(char *err_message, bool is_errno, t_data *data);
 void		free_lexer(t_lexer **lexer);
 void		free_parser(t_parser **parser);
+int			ft_is_space(char c);
+int			ft_is_alphanum(char c);
 int			error_pre_loop(char *err_message, t_data *data);
 int			ft_strcmp(char *s1, char *s2);
 int			ft_strncmp(char *s1, char *s2, size_t n);
@@ -127,6 +129,7 @@ int			ft_chararr_size(char **arr);
 int			ft_varname_len(char *var);
 bool		ft_issubstr(const char *str, const char *to_find);
 size_t		ft_strlen(const char *str);
+char		*ft_itoa(int num);
 char		*ft_strtrim(const char *str, const char *set);
 char		*ft_strtrim_cmd(char *cmd);
 char		*ft_strjoin(char *s1, char *s2);
@@ -165,6 +168,7 @@ t_parser	*parser_new(t_data *data, t_lexer *lexer, t_parser *prev);
 
 void		copy_all(t_data *data, char *result, char *str, char **variable);
 size_t		get_total_size(t_data *data, char *str, char **variables);
+int			expander_stop(char c);
 int			expander_cmp(char *variable, char *env);
 char		*expander(t_data *data, char *str);
 char		**get_all_variable(char *str);

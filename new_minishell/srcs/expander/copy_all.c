@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:32:34 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/22 17:19:40 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:13:33 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	save_line1(char *str, size_t *index, char *stop)
 	{
 		++(*index);
 		*stop = '\0';
+		save_line1(str, index, stop);
 	}
 }
 

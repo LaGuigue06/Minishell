@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:57:36 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/22 17:59:24 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:20:05 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ char	**ft_arrdup_exclude(char **arr, char *excluded)
 	{
 		var_name = ft_substr(arr[index], 0, ft_varname_len(arr[index]));
 		if (ft_strcmp(excluded, var_name) != 0)
-			result[size++] = ft_strdup(arr[index++]);
+			result[size] = ft_strdup(arr[index]);
+		++index;
 		free(var_name);
 	}
 	result[index] = NULL;

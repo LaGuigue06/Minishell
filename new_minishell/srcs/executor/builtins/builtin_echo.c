@@ -6,11 +6,23 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:19:24 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/22 18:55:30 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:43:24 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	check_option(char *arg)
+{
+	size_t	index;
+
+	index = 1;
+	if (arg == NULL || arg[0] == '\0' ||arg[1] == '\0')
+		return (0);
+	while (arg[index] && arg[index] == 'n')
+		++index;
+	return (arg[index] == '\0');
+}
 
 int	execute_echo(char **args)
 {
@@ -24,17 +36,19 @@ int	execute_echo(char **args)
 	}
 	while (args[i])
 	{
-		if ((ft_strcmp(args[0], "-n") == 0) && i == 0)
+		if (check_option(args[i]) && i == 0)
 		{
-			++i;
-			continue ;
+			while (check_option(args[i]))
+				++i;
+			if (args[i] == NULL)
+				break ;
 		}
 		ft_putstr_fd(args[i], STDOUT_FILENO);
 		if (args[i + 1] != NULL)
 			ft_putchar_fd(' ', STDOUT_FILENO);
 		++i;
 	}
-	if (args[0] && ft_strcmp(args[0], "-n"))
+	if (args[0] && check_option(args[0]) == 0)
 		ft_putchar_fd('\n', STDOUT_FILENO);
 	return (0);
 }

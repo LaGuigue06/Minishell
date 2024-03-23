@@ -23,7 +23,10 @@ ft_strncmp.c \
 ft_chararr_size.c \
 ft_arrdup_exclude.c\
 ft_strchr.c\
-ft_strtrim.c)
+ft_strtrim.c\
+ft_is_alphanum.c\
+ft_is_space.c\
+ft_itoa.c)
 
 LEXER_SRCS= $(addprefix srcs/lexer/, \
 lexer.c\

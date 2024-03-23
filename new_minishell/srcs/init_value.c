@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:25:17 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/22 19:29:51 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:00:14 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static int	get_path_pwd_oldpwd(t_data *data)
 				return (0);
 		}
 		else if (ft_issubstr(data->env[index], "PWD="))
-			data->pwd = ft_strdup(data->env[index] + 4);
+			data->pwd = data->env[index] + 4;
 		else if (ft_issubstr(data->env[index], "OLDPWD="))
-			data->old_pwd = ft_strdup(data->env[index] + 7);
+			data->old_pwd = data->env[index] + 7;
 		++index;
 	}
 	if (data->old_pwd == NULL || data->pwd == NULL)

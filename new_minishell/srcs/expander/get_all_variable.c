@@ -6,7 +6,7 @@
 /*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:00:05 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/22 16:45:40 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:21:06 by gurousta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ char	*get_current_variable(char *str)
 	size_t	index;
 
 	index = 0;
-	while (str[index] && str[index] != ' ' && str[index] != 39
-		&& str[index] != 34 && str[index] != '$')
+	if (str[0] != '\0' && str[0] == '?')
+		return (ft_itoa(g_error_num));
+	while (str[index] && expander_stop(str[index]))
 		++index;
 	result = ft_calloc(sizeof(char), index + 2);
 	if (result == NULL)
 		return (NULL);
 	index = 0;
-	while (str[index] && str[index] != ' ' && str[index] != 39
-		&& str[index] != 34 && str[index] != '$')
+	while (str[index] && expander_stop)
 	{
 		result[index] = str[index];
 		++index;
@@ -65,6 +65,18 @@ size_t	get_variable_number(char *str)
 	return (count);
 }
 
+static void	save_line1(char *str, size_t *index, char *stop)
+{
+	if ((str[*index] == 34 || str[*index] == 39) && *stop == '\0')
+		*stop = str[(*index)++];
+	if (str[*index] && str[*index] == *stop)
+	{
+		++(*index);
+		*stop = '\0';
+		save_line1(str, index, stop);
+	}
+}
+
 static void	get_all_variable2(char **result, char *str,
 	size_t index, size_t index_result)
 {
@@ -73,10 +85,11 @@ static void	get_all_variable2(char **result, char *str,
 	stop = '\0';
 	while (str[index])
 	{
-		if ((str[index] == 34 || str[index] == 39) && stop == '\0')
+		/*if ((str[index] == 34 || str[index] == 39) && stop == '\0')
 			stop = str[index++];
 		if (str[index] && str[index] == stop)
-			stop = '\0';
+			stop = '\0';*/
+		save_line1(str, &index, &stop);
 		if (str[index] && str[index] == '$' && stop != 39)
 		{
 			++index;
@@ -86,8 +99,7 @@ static void	get_all_variable2(char **result, char *str,
 				free_arr(result);
 				break ;
 			}
-			while (str[index] && str[index] != ' '
-				&& str[index] != stop && str[index] != 39 && str[index] != '$')
+			while (str[index] && expander_stop(str[index]))
 				++index;
 		}
 		else if (str[index])
