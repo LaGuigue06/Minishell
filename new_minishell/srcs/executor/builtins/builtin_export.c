@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:22 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/22 17:36:40 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:32:00 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	is_already_exported(char *str, char **env)
 	return (0);
 }
 
-static void	replace_env(char *var, char **env)
+void	replace_env(char *var, char **env)
 {
 	char	*varname;
 	char	*env_varname;

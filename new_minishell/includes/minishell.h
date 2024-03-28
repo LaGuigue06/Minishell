@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/23 20:30:38 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:32:16 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void		*ft_calloc(size_t num, size_t size);
 void		error(char *err_message, bool is_errno, t_data *data);
 void		free_lexer(t_lexer **lexer);
 void		free_parser(t_parser **parser);
+void		replace_env(char *var, char **env);
 int			ft_is_space(char c);
 int			ft_is_alphanum(char c);
 int			error_pre_loop(char *err_message, t_data *data);
