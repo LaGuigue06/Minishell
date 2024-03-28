@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_value.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:25:17 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/23 18:00:14 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:25:38 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ int	init_value(t_data *data, char **env, char **argv, int argc)
 		return (error_pre_loop(MALLOC_ERROR, data));
 	data->lexer = NULL;
 	data->parser = NULL;
-	g_error_num = 0;
 	return (1);
 }

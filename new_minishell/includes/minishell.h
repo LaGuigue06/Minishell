@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/28 15:32:16 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:26:39 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_data
 	t_parser	*parser;
 }		t_data;
 
-extern int	g_error_num;
+extern int	g_pid;
 
 /*				Utils				*/
 

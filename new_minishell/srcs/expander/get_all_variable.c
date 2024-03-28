@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_all_variable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:00:05 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/23 20:21:06 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:25:27 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_current_variable(char *str)
 
 	index = 0;
 	if (str[0] != '\0' && str[0] == '?')
-		return (ft_itoa(g_error_num));
+		return (ft_itoa(0));
 	while (str[index] && expander_stop(str[index]))
 		++index;
 	result = ft_calloc(sizeof(char), index + 2);

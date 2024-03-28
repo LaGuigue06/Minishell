@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:20:16 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/22 18:32:31 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:50:20 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	forking(t_data *data,
 	data->pid[i] = fork();
 	if (data->pid[i] == -1)
 		error("fork", 1, data);
+	g_pid = data->pid[i];
 	if (data->pid[i] == 0)
 	{
 		if (parser->prev)
@@ -49,6 +50,7 @@ void	wait_all(t_data *data)
 	while (i < data->pipe_count)
 		waitpid(data->pid[i++], &status, 0);
 	waitpid(data->pid[i], &status, 0);
+	g_pid = 0;
 }
 
 int	execute(t_data *data)

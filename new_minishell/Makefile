@@ -70,7 +70,10 @@ get_total_size.c\
 copy_all.c\
 expander_cmp.c)
 
-SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(LEXER_SRCS) $(PARSER_SRCS) $(EXPANDER_SRC)\
+MINISIG= $(addprefix srcs/signals/, \
+minisig.c)
+
+SRCS= $(EXECUTION_SRCS) $(PARSING_SRCS) $(UTILS_SRCS) $(LEXER_SRCS) $(PARSER_SRCS) $(EXPANDER_SRC) $(MINISIG)\
 $(addprefix srcs/, \
 minishell.c\
 init_value.c)
