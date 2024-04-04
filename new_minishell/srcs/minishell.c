@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
-/*   Updated: 2024/04/04 16:49:30 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:04:22 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	minishell(t_data *data)
 {
 	data->line = readline(GREEN"Mnishell "RED">> " RESET);
 	if (data->line == NULL || data->line[0] == '\0')
-		return ;
+	{
+		free_data(data);
+		exit(EXIT_SUCCESS);
+	}
 	add_history(data->line);
 	lexer(data);
 	parser(data);

@@ -20,6 +20,7 @@ void	handle_signals(int code, siginfo_t *siginfo, void *context)
 		return ;
 	if (code == SIGINT)
 	{
+		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
