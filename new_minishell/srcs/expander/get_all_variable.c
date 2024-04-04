@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:00:05 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/28 16:25:27 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:51:08 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_current_variable(char *str)
 	if (result == NULL)
 		return (NULL);
 	index = 0;
-	while (str[index] && expander_stop)
+	while (str[index] && expander_stop(str[index]))
 	{
 		result[index] = str[index];
 		++index;
@@ -77,6 +77,10 @@ static void	save_line1(char *str, size_t *index, char *stop)
 	}
 }
 
+/*if ((str[index] == 34 || str[index] == 39) && stop == '\0')
+			stop = str[index++];
+		if (str[index] && str[index] == stop)
+			stop = '\0';*/
 static void	get_all_variable2(char **result, char *str,
 	size_t index, size_t index_result)
 {
@@ -85,10 +89,6 @@ static void	get_all_variable2(char **result, char *str,
 	stop = '\0';
 	while (str[index])
 	{
-		/*if ((str[index] == 34 || str[index] == 39) && stop == '\0')
-			stop = str[index++];
-		if (str[index] && str[index] == stop)
-			stop = '\0';*/
 		save_line1(str, &index, &stop);
 		if (str[index] && str[index] == '$' && stop != 39)
 		{

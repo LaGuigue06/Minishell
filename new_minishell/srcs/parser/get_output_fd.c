@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_output_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:26:41 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/12 14:20:09 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:46:41 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	get_output_fd(t_data *data, t_lexer *lexer)
 {
 	t_lexer	*head;
-	int		output_fd;
+	int		o_fd;
 
 	head = lexer;
 	while (head->prev && head->prev->token != PIPE)
@@ -24,17 +24,17 @@ int	get_output_fd(t_data *data, t_lexer *lexer)
 	{
 		if (head->token == ONE_RIGHT)
 		{
-			output_fd = open(head->next->word, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-			if (output_fd == -1)
+			o_fd = open(head->next->word, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			if (o_fd == -1)
 				error(head->next->word, 1, data);
-			return (output_fd);
+			return (o_fd);
 		}
 		if (head->token == TWO_RIGHT)
 		{
-			output_fd = open(head->next->word, O_WRONLY | O_CREAT | O_APPEND, 0777);
-			if (output_fd == -1)
+			o_fd = open(head->next->word, O_WRONLY | O_CREAT | O_APPEND, 0777);
+			if (o_fd == -1)
 				error(head->next->word, 1, data);
-			return (output_fd);
+			return (o_fd);
 		}
 		head = head->next;
 	}

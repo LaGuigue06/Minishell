@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:45:56 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/23 18:42:57 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:44:08 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-
 
 static void	get_trim_line(t_data *data)
 {
@@ -24,7 +22,7 @@ static void	get_trim_line(t_data *data)
 	free(data->line);
 	data->line = temp;
 	if (data->line == NULL || data->line[0] == '\0'
-		||(data->line[0] >= 9 && data->line[0] <= 13)
+		|| (data->line[0] >= 9 && data->line[0] <= 13)
 		|| (data->line[0] == ':' && data->line[1] == '\0')
 		|| data->line[0] == '!')
 		reset_data(data);

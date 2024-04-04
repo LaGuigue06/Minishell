@@ -27,18 +27,16 @@ void	handle_signals(int code, siginfo_t *siginfo, void *context)
 	}
 }
 
-void    minisig_init(t_data *data)
+void	minisig_init(t_data *data)
 {
-	(void) data;
-	struct sigaction 	sig;
+	struct sigaction	sig;
 	sigset_t			sigset;
 
+	(void) data;
 	sigemptyset(&sigset);
-    sigaddset(&sigset, SIGINT);
-    //sigaddset(&sigset, SIGQUIT);
+	sigaddset(&sigset, SIGINT);
 	sig.sa_flags = 0;
 	sig.sa_sigaction = &handle_signals;
 	sig.sa_mask = sigset;
 	sigaction(SIGINT, &sig, 0);
-	//sigaction(SIGQUIT, &sig, 0);
 }
