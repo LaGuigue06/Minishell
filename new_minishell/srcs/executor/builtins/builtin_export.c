@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:22 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/28 15:32:00 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:41:45 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,15 @@ void	replace_env(char *var, char **env)
 	free(varname);
 }
 
-int	execute_export(t_data *data, char **args, int output_fd)
+static void	export(t_data *data, char **args, int i)
 {
-	char	*str;
 	char	*tmp;
 	char	**new_env;
-	int		i;
+	char	*str;
 
-	if (!args[1])
-	{
-		execute_env(data->env, output_fd);
-		return (1);
-	}
-	i = 1;
 	while (args[i])
 	{
-		str = ft_strdup(args[i]);
+		str = ft_strdup(args[i++]);
 		if (!ft_strchr(str, '='))
 		{
 			tmp = ft_strdup(str);
@@ -91,7 +84,16 @@ int	execute_export(t_data *data, char **args, int output_fd)
 			free(data->env);
 			data->env = new_env;
 		}
-		i++;
 	}
+}
+
+int	execute_export(t_data *data, char **args, int output_fd)
+{
+	int	i;
+
+	if (!args[1])
+		return (execute_env(data->env, output_fd));
+	i = 1;
+	export(data, args, i);
 	return (0);
 }

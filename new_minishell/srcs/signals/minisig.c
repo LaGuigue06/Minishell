@@ -35,10 +35,10 @@ void    minisig_init(t_data *data)
 
 	sigemptyset(&sigset);
     sigaddset(&sigset, SIGINT);
-    sigaddset(&sigset, SIGQUIT);
+    //sigaddset(&sigset, SIGQUIT);
 	sig.sa_flags = 0;
 	sig.sa_sigaction = &handle_signals;
 	sig.sa_mask = sigset;
 	sigaction(SIGINT, &sig, 0);
-	sigaction(SIGQUIT, &sig, 0);
+	//sigaction(SIGQUIT, &sig, 0);
 }

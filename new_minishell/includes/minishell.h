@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:47 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/28 16:26:39 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:21:49 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,16 @@
 # define SEMICOLON_TOKEN "Minishell: the semicolon token is not allowed!\n"
 # define PIPE_PROMP_TOKEN "Minishell: the pipe prompt token is not allowed!\n"
 # define PIPE_SYNTAX_ERROR "Minishell: syntax error near unexpected token `|'\n"
-# define ONE_RIGHT_SYNTAX_ERROR "Minishell: syntax error near unexpected token `>'\n"
-# define TWO_RIGHT_SYNTAX_ERROR "Minishell: syntax error near unexpected token `>>'\n"
-# define ONE_LEFT_SYNTAX_ERROR "Minishell: syntax error near unexpected token `<'\n"
-# define TWO_LEFT_SYNTAX_ERROR "Minishell: syntax error near unexpected token `<<'\n"
-# define NEWLINE_SYNTAX_ERROR "Minishell: syntax error near unexpected token `newline'\n"
+# define ONE_RIGHT_SYNTAX_ERROR "Minishell: syntax error near unexpected \
+	token `>'\n"
+# define TWO_RIGHT_SYNTAX_ERROR "Minishell: syntax error near unexpected token \
+	`>>'\n"
+# define ONE_LEFT_SYNTAX_ERROR "Minishell: syntax error near unexpected token \
+	`<'\n"
+# define TWO_LEFT_SYNTAX_ERROR "Minishell: syntax error near unexpected token \
+	`<<'\n"
+# define NEWLINE_SYNTAX_ERROR "Minishell: syntax error near unexpected token \
+	`newline'\n"
 # define PIPE_ERROR "Minishell: pipe failed to initialize"
 
 /*				COLORS				*/

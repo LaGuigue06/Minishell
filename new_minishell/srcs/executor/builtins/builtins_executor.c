@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_executor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:22:58 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/22 19:58:39 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:22:12 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:41:34 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/28 15:42:29 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:29:31 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static char	*get_oldpwd(t_data *data)
 	{
 		oldpwd = data->env[index];
 		if (expander_cmp("PWD=", data->env[index]) == 0)
-			return (ft_substr(oldpwd, ft_varname_len(oldpwd) + 1, ft_strlen(oldpwd)));
+			return (ft_substr(oldpwd, ft_varname_len(oldpwd) + 1,
+					ft_strlen(oldpwd)));
 		++index;
 	}
 	return (NULL);
@@ -35,9 +36,7 @@ static void	update_env(t_data *data)
 	char	*temp_opwd;
 	size_t	index;
 
-	index = 0;
-	while (data->env[index])
-		++index;
+	index = ft_chararr_size(data->env);
 	temp_env = ft_calloc(sizeof(char *), index + 1);
 	temp_pwd = getcwd(NULL, 0);
 	temp_opwd = get_oldpwd(data);
@@ -91,40 +90,15 @@ int	execute_cd(t_data *data, char **args)
 		home_path = find_home(data);
 		if (home_path == NULL || home_path[0] == '\0')
 		{
-			ft_putstr_fd("Minishell: HOME is empty or undefined", STDERR_FILENO);
+			ft_putstr_fd("Minishell: HOME is empty or undefined",
+				STDERR_FILENO);
 			return (0);
 		}
 		if (chdir(find_home(data)) == -1)
-			return(print_error(args[0]));
+			return (print_error(args[0]));
 	}
 	else if (chdir(args[0]) == -1)
 		return (print_error(args[0]));
-	/*free(data->old_pwd);
-	data->old_pwd = ft_strdup(data->pwd);
-	free(data->pwd);
-	data->pwd = getcwd(NULL, 0);*/
 	update_env(data);
 	return (0);
 }
-
-/*int	execute_cd(t_data *data, char **args)
-{
-	if (!args[1])
-	{
-		chdir("~");
-		data->old_pwd = data->pwd;
-		data->pwd = getenv("HOME");
-		return (0);
-	}
-	if (chdir(args[1]) == -1)
-	{
-		ft_putstr_fd(strerror(errno), STDERR_FILENO);
-		ft_putstr_fd(": ", 1);
-		ft_putstr_fd(args[1], 1);
-		ft_putchar_fd('\n', 1);
-		return (1);
-	}
-	data->old_pwd = data->pwd;
-	data->pwd = getcwd(NULL, 0);
-	return (0);
-}*/

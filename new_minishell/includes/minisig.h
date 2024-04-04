@@ -6,7 +6,7 @@
 /*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:45:15 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/28 15:51:12 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:19:58 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "minishell.h"
 
-void    minisig_init(t_data *data);
+void	minisig_init(t_data *data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:19:24 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/23 19:43:24 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:29:48 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_option(char *arg)
 	size_t	index;
 
 	index = 1;
-	if (arg == NULL || arg[0] == '\0' ||arg[1] == '\0')
+	if (arg == NULL || arg[0] == '\0' || arg[1] == '\0')
 		return (0);
 	while (arg[index] && arg[index] == 'n')
 		++index;
