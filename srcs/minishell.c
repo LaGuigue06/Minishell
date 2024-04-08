@@ -3,36 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 16:59:04 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/05 18:41:57 by laguigue         ###   ########.fr       */
+/*   Created: 2024/03/06 15:48:39 by laguigue          #+#    #+#             */
+/*   Updated: 2024/04/08 11:16:12 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include "minisig.h"
+
+int	g_pid;
+
+void	reset_data(t_data *data)
+{
+	free_data(data);
+	if (data->line != NULL)
+		free(data->line);
+	data->line = NULL;
+}
+
+void	minishell(t_data *data)
+{
+	data->line = readline(GREEN"Mnishell "RED">> " RESET);
+	if (data->line == NULL || data->line[0] == '\0')
+	{
+		free_all(data);
+		exit(EXIT_SUCCESS);
+	}
+	add_history(data->line);
+	lexer(data);
+	parser(data);
+	execute(data);
+}
 
 int	main(int argc, char **argv, char **env)
 {
-	t_data	*data;
-	char	*line;
+	t_data	data;
 
-	if (argc > 1)
+	if (!init_value(&data, env, argv, argc))
 		return (EXIT_FAILURE);
-	data = init_value(env);
 	using_history();
+	minisig_init(&data);
 	while (1)
 	{
-		line = readline(GREEN"Minishell "RED">> " RESET);
-		if (line == NULL)
-			break ;
-		//data = init_command(line, NULL);
-		add_history(line);
-		//print_command(cmd);
-		free(line);
-		//suite = parse_suite(line); // todo parse() = parse_suite(), parse_suite(), ...
-		//cmd = parse(line);
-		//ft_execute(cmd, env);
+		g_pid = 0;
+		minishell(&data);
+		reset_data(&data);
 	}
-	return (0);
+	rl_clear_history();
+	free_all(&data);
+	return (EXIT_SUCCESS);
 }
