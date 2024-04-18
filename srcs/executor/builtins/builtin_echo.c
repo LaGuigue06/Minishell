@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:19:24 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/04/04 16:29:48 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:51:19 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	check_option(char *arg)
 	index = 1;
 	if (arg == NULL || arg[0] == '\0' || arg[1] == '\0')
 		return (0);
-	while (arg[index] && arg[index] == 'n')
+	while (arg[index] && arg[index] == 'n' && arg[0] == '-')
 		++index;
 	return (arg[index] == '\0');
 }

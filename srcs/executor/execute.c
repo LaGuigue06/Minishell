@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:20:16 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/03/28 16:50:20 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:55:11 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ static void	forking(t_data *data,
 		close(fd_pipe[1]);
 		if (parser->prev)
 			close(fd_in);
+		if (parser->builtin)
+		{
+			execute_builtin(parser, data);
+			exit(0);
+		}
 		handle_cmd(data, parser);
 	}
 	++i;
@@ -50,7 +55,8 @@ void	wait_all(t_data *data)
 	while (i < data->pipe_count)
 		waitpid(data->pid[i++], &status, 0);
 	waitpid(data->pid[i], &status, 0);
-	g_pid = 0;
+	if (WIFEXITED(status))
+		g_pid = WEXITSTATUS(status);
 }
 
 int	execute(t_data *data)
@@ -65,7 +71,7 @@ int	execute(t_data *data)
 	is_new = 1;
 	if (data->pipe_count == 0)
 		return (simple_cmd(data, head));
-	data->pid = ft_calloc(sizeof(int), data->pipe_count + 2);
+	data->pid = ft_calloc(sizeof(int), data->pipe_count + 1);
 	if (data->pid == NULL)
 		error(MALLOC_ERROR, 0, data);
 	while (head)

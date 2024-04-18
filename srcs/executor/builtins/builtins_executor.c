@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_executor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:22:58 by vicalvez          #+#    #+#             */
-/*   Updated: 2024/04/08 11:16:23 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:01:34 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	execute_builtin(t_parser *parser, t_data *data)
 	int	output_fd;
 
 	output_fd = 1;
+	g_pid = 0;
 	if (ft_strcmp(parser->cmd, "echo") == 0)
 		return (execute_echo(parser->args + 1));
 	if (ft_strcmp(parser->cmd, "env") == 0)

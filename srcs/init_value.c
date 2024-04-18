@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_value.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:25:17 by laguigue          #+#    #+#             */
-/*   Updated: 2024/04/08 11:15:04 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:47:31 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	init_value(t_data *data, char **env, char **argv, int argc)
 	data->line = NULL;
 	data->env = NULL;
 	data->path = NULL;
+	data->pid = NULL;
+	g_pid = 0;
 	data->env = ft_arrdup(env, 0);
 	if (data->env == NULL)
 		return (error_pre_loop(MALLOC_ERROR, data));

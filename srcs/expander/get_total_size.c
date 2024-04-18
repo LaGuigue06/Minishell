@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_total_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:06:51 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/22 16:34:03 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:16:41 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static size_t	get_size_env(t_data *data, char **variable)
 	while (variable[index])
 	{
 		env_index = 0;
+		if (ft_strchr(variable[index], '=') == NULL)
+			size = size + ft_strlen(variable[index]);
 		while (data->env[env_index])
 		{
 			if (expander_cmp(variable[index], data->env[env_index]) == 0)
@@ -69,8 +71,7 @@ static size_t	get_total_size2(char *str, size_t index, size_t size, char stop)
 		if (str[index] && str[index] == '$' && stop != 39)
 		{
 			++index;
-			while (str[index] && str[index] != ' ' && str[index] != stop
-				&& str[index] != 39 && str[index] != '$')
+			while (str[index] && !expander_stop(str[index]))
 				++index;
 		}
 		else if (str[index])

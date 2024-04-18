@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:45:51 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/23 20:04:19 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:44:49 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-/*									Expander				
-il n'est pas finit...
-to do:
-	-$? qui doit renvoyer l'error num de la derniere serie de comande
-	-[] {} 0123456789 % ' " $ sont les caratere qui arrete l'expander !
-*/
 
 int	expander_stop(char c)
 {
@@ -25,6 +18,7 @@ int	expander_stop(char c)
 		|| c == '{' || c == '}'
 		|| c == '%' || c == 34
 		|| c == 39 || c == '$'
+		|| c == '?'
 		|| ft_is_space(c)
 		|| ft_is_alphanum(c));
 }

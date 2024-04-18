@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   copy_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:32:34 by gurousta          #+#    #+#             */
-/*   Updated: 2024/03/23 19:13:33 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:42:11 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	copy_error_number(char *result, char *variable, size_t *index_result)
+{
+	size_t	index;
+
+	index = 0;
+	while (variable[index])
+		result[(*index_result)++] = variable[index++];
+	result[*index_result] = '\0';
+}
 
 void	copy_variable(t_data *data, char *result,
 	char *variable, size_t *index_result)
@@ -20,6 +30,8 @@ void	copy_variable(t_data *data, char *result,
 
 	env_index = 0;
 	index = 0;
+	if (ft_strchr(variable, '=') == NULL)
+		return (copy_error_number(result, variable, index_result));
 	while (data->env[env_index])
 	{
 		if (expander_cmp(variable, data->env[env_index]) == 0)
@@ -55,8 +67,9 @@ static void	save_line1(char *str, size_t *index, char *stop)
 static void	save_line2(char *str, size_t *index)
 {
 	++(*index);
-	while (str[*index] && str[*index] != ' '
-		&& str[*index] != 34 && str[*index] != 39 && str[*index] != '$')
+	while (str[*index] && !expander_stop(str[*index]))
+		++(*index);
+	if (str[*index] == '?' && str[*index - 1] == '$')
 		++(*index);
 }
 

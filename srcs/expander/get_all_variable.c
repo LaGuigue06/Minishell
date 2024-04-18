@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_all_variable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:00:05 by gurousta          #+#    #+#             */
-/*   Updated: 2024/04/04 16:51:08 by vicalvez         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:06:17 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ char	*get_current_variable(char *str)
 
 	index = 0;
 	if (str[0] != '\0' && str[0] == '?')
-		return (ft_itoa(0));
-	while (str[index] && expander_stop(str[index]))
+		return (ft_itoa(g_pid));
+	while (str[index] && !expander_stop(str[index]))
 		++index;
 	result = ft_calloc(sizeof(char), index + 2);
 	if (result == NULL)
 		return (NULL);
 	index = 0;
-	while (str[index] && expander_stop(str[index]))
+	while (str[index] && !expander_stop(str[index]))
 	{
 		result[index] = str[index];
 		++index;
@@ -55,8 +55,7 @@ size_t	get_variable_number(char *str)
 		{
 			++count;
 			++index;
-			while (str[index] && str[index] != ' '
-				&& str[index] != 34 && str[index] != 39 && str[index] != '$')
+			while (str[index] && !expander_stop(str[index]))
 				++index;
 		}
 		else if (str[index])
@@ -76,11 +75,7 @@ static void	save_line1(char *str, size_t *index, char *stop)
 		save_line1(str, index, stop);
 	}
 }
-
-/*if ((str[index] == 34 || str[index] == 39) && stop == '\0')
-			stop = str[index++];
-		if (str[index] && str[index] == stop)
-			stop = '\0';*/
+			
 static void	get_all_variable2(char **result, char *str,
 	size_t index, size_t index_result)
 {
@@ -99,7 +94,7 @@ static void	get_all_variable2(char **result, char *str,
 				free_arr(result);
 				break ;
 			}
-			while (str[index] && expander_stop(str[index]))
+			while (str[index] && !expander_stop(str[index]))
 				++index;
 		}
 		else if (str[index])
