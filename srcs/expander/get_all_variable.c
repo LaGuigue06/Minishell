@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_all_variable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:00:05 by gurousta          #+#    #+#             */
-/*   Updated: 2024/04/16 14:06:17 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:46:24 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	save_line1(char *str, size_t *index, char *stop)
 		save_line1(str, index, stop);
 	}
 }
-			
+
 static void	get_all_variable2(char **result, char *str,
 	size_t index, size_t index_result)
 {

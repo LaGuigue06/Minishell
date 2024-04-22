@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   copy_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:32:34 by gurousta          #+#    #+#             */
-/*   Updated: 2024/04/16 13:42:11 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:46:16 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	copy_error_number(char *result, char *variable, size_t *index_result)
+static void	copy_error_number(char *result, char *variable,
+		size_t *index_result)
 {
 	size_t	index;
 
