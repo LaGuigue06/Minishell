@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   get_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gurousta <gurousta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:42:15 by laguigue          #+#    #+#             */
-/*   Updated: 2024/03/22 16:59:53 by gurousta         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:37:33 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static size_t	get_size2(t_lexer *head, size_t size)
+{
+	while (head)
+	{
+		if (head->token != WORD)
+			break ;
+		head = head->next;
+		++size;
+	}
+	return (size);
+}
 
 static size_t	get_size(t_data *data, t_lexer *lexer, char *cmd)
 {
@@ -32,13 +44,7 @@ static size_t	get_size(t_data *data, t_lexer *lexer, char *cmd)
 	}
 	if (temp != NULL)
 		free(temp);
-	while (head)
-	{
-		if (head->token != WORD)
-			break ;
-		head = head->next;
-		++size;
-	}
+	size = get_size2(head, size);
 	return (size);
 }
 
