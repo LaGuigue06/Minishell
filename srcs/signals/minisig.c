@@ -26,6 +26,8 @@ void	handle_signals(int code, siginfo_t *siginfo, void *context)
 		rl_redisplay();
 		printf("  \b\b");
 	}
+	else
+		return ;
 }
 
 void	minisig_init(t_data *data)
@@ -36,6 +38,7 @@ void	minisig_init(t_data *data)
 	(void) data;
 	sigemptyset(&sigset);
 	sigaddset(&sigset, SIGINT);
+	sigaddset(&sigset, SIGQUIT);
 	sig.sa_flags = 0;
 	sig.sa_sigaction = &handle_signals;
 	sig.sa_mask = sigset;
