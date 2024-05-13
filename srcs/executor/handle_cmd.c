@@ -6,7 +6,7 @@
 /*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:44:29 by guillaumero       #+#    #+#             */
-/*   Updated: 2024/05/13 19:00:55 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:30:30 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	handle_cmd(t_data *data, t_parser *parser)
 		write(STDERR_FILENO, "Minishell: ", 11);
 		perror(binary);
 		free(binary);
-		exit(1);
+		exit(127);
 	}
 }

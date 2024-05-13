@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_redirection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 12:59:17 by guillaumero       #+#    #+#             */
-/*   Updated: 2024/05/13 14:28:19 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/05/13 19:32:54 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void	do_infile(t_lexer *lexer)
 		ft_putstr_fd("Minishell: ", STDERR_FILENO);
 		write(STDERR_FILENO, lexer->word, ft_strlen(lexer->word));
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-		exit(127);
+		exit(1);
 	}
 	if (fd > 0 && dup2(fd, STDIN_FILENO) < 0)
 	{
 		ft_putstr_fd("Minishell: Dup error\n", STDERR_FILENO);
-		exit(127);
+		exit(1);
 	}
 	close(fd);
 }
@@ -40,12 +40,12 @@ static void	do_outfile(t_lexer *lexer)
 	if (fd < 0)
 	{
 		ft_putstr_fd("Minishell: outfile error\n", STDERR_FILENO);
-		exit(127);
+		exit(1);
 	}
 	if (fd > 0 && dup2(fd, STDOUT_FILENO) < 0)
 	{
 		ft_putstr_fd("Minishell: Dup error\n", STDERR_FILENO);
-		exit(127);
+		exit(1);
 	}
 	close(fd);
 }
@@ -58,12 +58,12 @@ static void	do_outfile_append(t_lexer *lexer)
 	if (fd < 0)
 	{
 		ft_putstr_fd("Minishelle: outfile error\n", STDERR_FILENO);
-		exit(127);
+		exit(1);
 	}
 	if (fd > 0 && dup2(fd, STDOUT_FILENO) < 0)
 	{
 		ft_putstr_fd("Minishell: Dup error\n", STDERR_FILENO);
-		exit(127);
+		exit(1);
 	}
 	close(fd);
 }
@@ -76,12 +76,12 @@ static void	do_heredoc(void)
 	if (fd < 0)
 	{
 		ft_putstr_fd("Minishell: heredoc error\n", STDERR_FILENO);
-		exit(127);
+		exit(1);
 	}
 	if (fd > 0 && dup2(fd, STDIN_FILENO) < 0)
 	{
 		ft_putstr_fd("Minishell: Dup error\n", STDERR_FILENO);
-		exit(127);
+		exit(1);
 	}
 	close(fd);
 	unlink(".heredoc_temp");

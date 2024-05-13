@@ -30,7 +30,6 @@ void	handle_signals(int code)
 void	minisig_init(t_data *data)
 {
 	(void) data;
-	g_pid = 0;
 	signal(SIGINT, &handle_signals);
 	signal(SIGQUIT, SIG_IGN);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:26:11 by guillaumero       #+#    #+#             */
-/*   Updated: 2024/05/13 14:35:19 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/05/13 19:29:18 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
