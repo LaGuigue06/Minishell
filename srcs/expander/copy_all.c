@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:32:34 by gurousta          #+#    #+#             */
-/*   Updated: 2024/05/13 14:14:45 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/05/13 18:44:42 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	copy_all(t_data *data, char *result, char *str, char **variable)
 	while (str[index])
 	{
 		save_line1(str, &index, &stop);
-		if (str[index] && str[index] == '$' && stop != 39)
+		if (str[index] && str[index] == '$' && stop != 39 && str[index + 1] != ' ' && str[index + 1] != '\0')
 		{
 			copy_variable(data, result, variable[i_variable++], &i_result);
 			save_line2(str, &index);
@@ -100,5 +100,5 @@ void	copy_all(t_data *data, char *result, char *str, char **variable)
 			++index;
 		}
 	}
-	result[i_result] = '\0';
+	//result[i_result] = '\0';
 }
