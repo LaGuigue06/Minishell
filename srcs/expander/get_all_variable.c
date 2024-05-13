@@ -6,7 +6,7 @@
 /*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:00:05 by gurousta          #+#    #+#             */
-/*   Updated: 2024/05/13 18:34:29 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:03:22 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ size_t	get_variable_number(char *str)
 			stop = str[index++];
 		if (str[index] && str[index] == stop)
 			stop = '\0';
-		if (str[index] && str[index] == '$' && stop != 39 && str[index + 1] != ' ' && str[index + 1] != '\0')
+		if (str[index] && str[index] == '$' && stop != 39
+			&& str[index + 1] != ' ' && str[index + 1] != '\0')
 		{
 			++count;
 			++index;
@@ -85,7 +86,8 @@ static void	get_all_variable2(char **result, char *str,
 	while (str[index])
 	{
 		save_line1(str, &index, &stop);
-		if (str[index] && str[index] == '$' && stop != 39 && str[index + 1] != ' ' && str[index + 1] != '\0')
+		if (str[index] && str[index] == '$' && stop != 39
+			&& str[index + 1] != ' ' && str[index + 1] != '\0')
 		{
 			++index;
 			result[index_result++] = get_current_variable(str + index);

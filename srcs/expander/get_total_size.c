@@ -6,7 +6,7 @@
 /*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:06:51 by gurousta          #+#    #+#             */
-/*   Updated: 2024/05/13 18:33:41 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:03:36 by laguigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static size_t	get_total_size2(char *str, size_t index, size_t size, char stop)
 			++index;
 			stop = '\0';
 		}
-		if (str[index] && str[index] == '$' && stop != 39 && str[index + 1] != ' ' && str[index + 1] != '\0')
+		if (str[index] && str[index] == '$' && stop != 39
+			&& str[index + 1] != ' ' && str[index + 1] != '\0')
 		{
 			++index;
 			while (str[index] && !expander_stop(str[index]))
