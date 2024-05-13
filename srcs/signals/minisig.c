@@ -17,14 +17,14 @@ void	handle_signals(int code)
 	(void) code;
 	if (g_pid == 0)
 	{
-		printf("\n");
+		ft_putstr_fd("\n", STDOUT_FILENO);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		printf("  \b\b");
+		ft_putstr_fd("  \b\b", STDOUT_FILENO);
 	}
 	else
-		printf("\n");
+		ft_putstr_fd("\n", STDOUT_FILENO);
 }
 
 void	minisig_init(t_data *data)

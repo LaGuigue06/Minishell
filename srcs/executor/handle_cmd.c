@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumeroustan <guillaumeroustan@stud    +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:44:29 by guillaumero       #+#    #+#             */
-/*   Updated: 2024/05/13 13:00:25 by guillaumero      ###   ########.fr       */
+/*   Updated: 2024/05/13 17:05:02 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	handle_cmd(t_data *data, t_parser *parser)
 	{
 		execute_builtin(parser, data);
 		exit(0);
+	}
+	if (!data->path)
+	{
+		ft_putstr_fd("Minishell: PATH not set\n", STDERR_FILENO);
+		exit(1);
 	}
 	binary = get_binary(data->path, parser->cmd);
 	if (binary == NULL)
