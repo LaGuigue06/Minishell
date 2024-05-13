@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laguigue <laguigue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vicalvez <vicalvez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:56:12 by laguigue          #+#    #+#             */
-/*   Updated: 2024/04/24 13:27:50 by laguigue         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:59:39 by vicalvez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	check_heredoc(t_data *data, t_parser *parser)
 		return ;
 	fd = open(".heredoc_temp", O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	line = readline("> ");
+	(void) data;
 	while (line && ft_strcmp(line, parser->delimiter) != 0)
 	{
 		ft_putstr_fd(line, fd);

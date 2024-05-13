@@ -12,13 +12,10 @@
 
 #include "minisig.h"
 
-void	handle_signals(int code, siginfo_t *siginfo, void *context)
+void	handle_signals(int code)
 {
-	(void) context;
-	(void) siginfo;
-	if (g_pid)
-		return ;
-	if (code == SIGINT)
+	(void) code;
+	if (g_pid == 0)
 	{
 		printf("\n");
 		rl_on_new_line();
@@ -26,18 +23,14 @@ void	handle_signals(int code, siginfo_t *siginfo, void *context)
 		rl_redisplay();
 		printf("  \b\b");
 	}
+	else
+		printf("\n");
 }
 
 void	minisig_init(t_data *data)
 {
-	struct sigaction	sig;
-	sigset_t			sigset;
-
 	(void) data;
-	sigemptyset(&sigset);
-	sigaddset(&sigset, SIGINT);
-	sig.sa_flags = 0;
-	sig.sa_sigaction = &handle_signals;
-	sig.sa_mask = sigset;
-	sigaction(SIGINT, &sig, 0);
+	g_pid = 0;
+	signal(SIGINT, &handle_signals);
+	signal(SIGQUIT, SIG_IGN);
 }
